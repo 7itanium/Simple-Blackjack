@@ -1,0 +1,432 @@
+[gd_scene load_steps=18 format=3 uid="uid://c446oaxmr7uo"]
+
+[ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_2fe8g"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_dgbpv"]
+[ext_resource type="Texture2D" uid="uid://iciw52fjflr5" path="res://Sprites/Cards/empty.png" id="2_umrlr"]
+[ext_resource type="Texture2D" uid="uid://m7puj5cxuq1q" path="res://Sprites/Deck.png" id="3_u5355"]
+[ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="5_bmd77"]
+[ext_resource type="Texture2D" uid="uid://fh2q6vvx3cgl" path="res://Sprites/round_marker_empty.png" id="5_gykdl"]
+[ext_resource type="FontFile" uid="uid://djmf3x3u2lnfm" path="res://Fonts/Minecraft.ttf" id="6_2oipp"]
+[ext_resource type="Script" path="res://Scripts/card.gd" id="6_6txbv"]
+[ext_resource type="Texture2D" uid="uid://c0sd1n23l7uls" path="res://Sprites/Cards/discard.png" id="7_xfv1q"]
+[ext_resource type="AudioStream" uid="uid://bxlbmcvnx0g6k" path="res://Sounds/SFX/bridge.mp3" id="8_j277j"]
+[ext_resource type="Script" path="res://Scripts/discard.gd" id="8_o3b5b"]
+[ext_resource type="Texture2D" uid="uid://eyjkgedsewvl" path="res://Sprites/trashUI.png" id="12_2s4qs"]
+[ext_resource type="Script" path="res://Scripts/trashed_card.gd" id="13_p7ins"]
+[ext_resource type="Texture2D" uid="uid://caep3dkg6usxw" path="res://Sprites/Cards/back.png" id="15_jmfcd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
+atlas = ExtResource("3_u5355")
+region = Rect2(0, 0, 54, 74)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mcqbc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mi0s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_1c7oq"]
+
+[node name="table" type="Node2D"]
+
+[node name="Table" type="Node" parent="."]
+
+[node name="Table" type="Sprite2D" parent="Table"]
+z_index = -20
+texture = ExtResource("1_2fe8g")
+
+[node name="Player Side" type="Node" parent="Table"]
+
+[node name="Empty5" type="Sprite2D" parent="Table/Player Side"]
+position = Vector2(-400, 275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Empty4" type="Sprite2D" parent="Table/Player Side"]
+position = Vector2(-200, 275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Empty3" type="Sprite2D" parent="Table/Player Side"]
+position = Vector2(0, 275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Empty2" type="Sprite2D" parent="Table/Player Side"]
+position = Vector2(200, 275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Empty" type="Sprite2D" parent="Table/Player Side"]
+position = Vector2(400, 275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Enemy Side" type="Node" parent="Table"]
+
+[node name="Empty5" type="Sprite2D" parent="Table/Enemy Side"]
+position = Vector2(-400, -275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Empty4" type="Sprite2D" parent="Table/Enemy Side"]
+position = Vector2(-200, -275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Empty3" type="Sprite2D" parent="Table/Enemy Side"]
+position = Vector2(0, -275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Empty2" type="Sprite2D" parent="Table/Enemy Side"]
+position = Vector2(200, -275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="Empty" type="Sprite2D" parent="Table/Enemy Side"]
+position = Vector2(400, -275)
+scale = Vector2(3, 3)
+texture = ExtResource("2_umrlr")
+
+[node name="DiscardIcon" type="Sprite2D" parent="Table"]
+position = Vector2(-750, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("7_xfv1q")
+
+[node name="Deck" type="AnimatedSprite2D" parent="Table"]
+z_index = 50
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mcqbc")
+
+[node name="Player1 Camera" type="Camera2D" parent="Table"]
+
+[node name="Round Marker 1" type="Sprite2D" parent="Table"]
+position = Vector2(-837, 66)
+scale = Vector2(3, 3)
+texture = ExtResource("5_gykdl")
+
+[node name="Round Marker 2" type="Sprite2D" parent="Table"]
+position = Vector2(-837, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("5_gykdl")
+
+[node name="Round Marker 3" type="Sprite2D" parent="Table"]
+position = Vector2(-837, -66)
+scale = Vector2(3, 3)
+texture = ExtResource("5_gykdl")
+
+[node name="Game Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_dgbpv")
+
+[node name="FlipSound" type="AudioStreamPlayer2D" parent="Game Manager"]
+stream = ExtResource("5_bmd77")
+
+[node name="BridgeSound" type="AudioStreamPlayer2D" parent="Game Manager"]
+stream = ExtResource("8_j277j")
+volume_db = -5.0
+
+[node name="Trash" type="Button" parent="Game Manager"]
+anchors_preset = -1
+anchor_left = 0.267
+anchor_top = 0.203
+anchor_right = 0.416
+anchor_bottom = 0.306
+offset_left = -0.640015
+offset_top = -0.240005
+offset_right = -0.720032
+offset_bottom = 0.519989
+theme_override_fonts/font = ExtResource("6_2oipp")
+theme_override_font_sizes/font_size = 72
+text = "Submit"
+
+[node name="Discard" type="Sprite2D" parent="Game Manager"]
+z_index = 5
+position = Vector2(-750, 0)
+scale = Vector2(3, 3)
+script = ExtResource("8_o3b5b")
+
+[node name="HandValue" type="Label" parent="Game Manager"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1148.0
+offset_top = -115.0
+offset_right = -772.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_2oipp")
+theme_override_font_sizes/font_size = 56
+text = " None - 0 dmg"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HandValue2" type="Label" parent="Game Manager"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1148.0
+offset_top = -990.0
+offset_right = -772.0
+offset_bottom = -934.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_2oipp")
+theme_override_font_sizes/font_size = 56
+text = " None - 0 dmg"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P1 Cards" type="Node" parent="."]
+
+[node name="Card 1" type="Sprite2D" parent="P1 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="Card 2" type="Sprite2D" parent="P1 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="Card 3" type="Sprite2D" parent="P1 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="Card 4" type="Sprite2D" parent="P1 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="Card 5" type="Sprite2D" parent="P1 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="HealthBar" type="ProgressBar" parent="P1 Cards"]
+z_index = -1
+offset_left = -472.0
+offset_top = 74.0
+offset_right = -128.0
+offset_bottom = 111.0
+theme = SubResource("Theme_1c7oq")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="HealthText" type="Label" parent="P1 Cards/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -18.5
+offset_right = 172.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_2oipp")
+theme_override_font_sizes/font_size = 32
+text = "P1: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P2 Cards" type="Node" parent="."]
+
+[node name="Card 1" type="Sprite2D" parent="P2 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="Card 2" type="Sprite2D" parent="P2 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="Card 3" type="Sprite2D" parent="P2 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="Card 4" type="Sprite2D" parent="P2 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="Card 5" type="Sprite2D" parent="P2 Cards"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("15_jmfcd")
+script = ExtResource("6_6txbv")
+
+[node name="HealthBar" type="ProgressBar" parent="P2 Cards"]
+z_index = -1
+anchors_preset = -1
+anchor_left = 0.142
+anchor_top = 0.086
+anchor_right = 0.142
+anchor_bottom = 0.086
+offset_left = -144.64
+offset_top = -203.88
+offset_right = 199.36
+offset_bottom = -166.88
+theme = SubResource("Theme_1c7oq")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="HealthText" type="Label" parent="P2 Cards/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -18.5
+offset_right = 172.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_2oipp")
+theme_override_font_sizes/font_size = 32
+text = "P2: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Trash UI" type="Node" parent="."]
+
+[node name="Trash" type="Sprite2D" parent="Trash UI"]
+z_index = 1000
+position = Vector2(-1160, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("12_2s4qs")
+script = ExtResource("13_p7ins")
+
+[node name="Cards" type="Node2D" parent="Trash UI/Trash"]
+scale = Vector2(0.333333, 0.333333)
+
+[node name="Discarded 1" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, -243)
+scale = Vector2(3, 3)
+
+[node name="Discarded 2" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, -189)
+scale = Vector2(3, 3)
+
+[node name="Discarded 3" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, -135)
+scale = Vector2(3, 3)
+
+[node name="Discarded 4" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, -81)
+scale = Vector2(3, 3)
+
+[node name="Discarded 5" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, -27)
+scale = Vector2(3, 3)
+
+[node name="Discarded 6" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, 27)
+scale = Vector2(3, 3)
+
+[node name="Discarded 7" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, 81)
+scale = Vector2(3, 3)
+
+[node name="Discarded 8" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, 135)
+scale = Vector2(3, 3)
+
+[node name="Discarded 9" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, 189)
+scale = Vector2(3, 3)
+
+[node name="Discarded 10" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(-81, 243)
+scale = Vector2(3, 3)
+
+[node name="Discarded 11" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, -243)
+scale = Vector2(3, 3)
+
+[node name="Discarded 12" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, -189)
+scale = Vector2(3, 3)
+
+[node name="Discarded 13" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, -135)
+scale = Vector2(3, 3)
+
+[node name="Discarded 14" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, -81)
+scale = Vector2(3, 3)
+
+[node name="Discarded 15" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, -27)
+scale = Vector2(3, 3)
+
+[node name="Discarded 16" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, 27)
+scale = Vector2(3, 3)
+
+[node name="Discarded 17" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, 81)
+scale = Vector2(3, 3)
+
+[node name="Discarded 18" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, 135)
+scale = Vector2(3, 3)
+
+[node name="Discarded 19" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, 189)
+scale = Vector2(3, 3)
+
+[node name="Discarded 20" type="Sprite2D" parent="Trash UI/Trash/Cards"]
+z_index = 10
+position = Vector2(81, 243)
+scale = Vector2(3, 3)
+
+[connection signal="pressed" from="Game Manager/Trash" to="Game Manager" method="_on_trash_pressed"]
