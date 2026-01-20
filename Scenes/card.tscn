@@ -3,10 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://caep3dkg6usxw" path="res://Sprites/Cards/back.png" id="1_wf8id"]
 [ext_resource type="Script" uid="uid://dvjy3u16tth25" path="res://Scripts/card.gd" id="2_brehn"]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="Card 1" type="Sprite2D" parent="."]
-z_index = 10
+[node name="Sprite2D" type="Sprite2D"]
 scale = Vector2(3, 3)
 texture = ExtResource("1_wf8id")
 script = ExtResource("2_brehn")
