@@ -26,8 +26,16 @@ func _process(delta: float) -> void:
 		cards = []
 		get_tree().reload_current_scene()
 	
-	player_hand_val.text = str(playerHand[0])
-	dealer_hand_val.text = str(dealerHand[0])
+	
+	if playerHand[0] > 21:
+		player_hand_val.text = str(playerHand[0]) + ", Bust!"
+	else: 
+		player_hand_val.text = str(playerHand[0])
+	if dealerHand[0] > 21:
+		dealer_hand_val.text = str(dealerHand[0]) + ", Bust!"
+	else: 
+		dealer_hand_val.text = str(dealerHand[0])
+	
 	
 	if Input.is_action_just_pressed("Hit") and isPlayerTurn == true:
 		deal_card(playerHand, false)
@@ -35,8 +43,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Stand") and isPlayerTurn == true:
 		dealerTurn()
 		
-	if playerHand[0] > 21:
+	if playerHand[0] > 21 and isPlayerTurn == true:
 		isPlayerTurn = false
+		await get_tree().create_timer(1.2).timeout
+		end()
 	
 	if isDealerTurn == true and dealerDown.scale.x > 0 and dealerDown.value == 0:
 		choose_card(dealerDown, dealerHand)
@@ -53,15 +63,22 @@ func start():
 	isPlayerTurn = true
 	
 func end():
-	await get_tree().create_timer(1).timeout
+	isDealerTurn = false
+	isPlayerTurn = false
+	await get_tree().create_timer(2).timeout
 	bridge_sound.play()
 	for card in cards:
 		card.target_position = Vector2(775, -300)
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
+	for card in cards:
+		card.queue_free()
 	global.delt = [0,0]
 	global.end = [250, 250]
 	cards = []
-	get_tree().reload_current_scene()
+	liveDeck = global.deck.keys()
+	playerHand = [0, false, 0]
+	dealerHand = [0, false, 1]
+	start()
 
 func dealerTurn():
 	isPlayerTurn = false

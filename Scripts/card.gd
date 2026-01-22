@@ -2,7 +2,7 @@ extends Sprite2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-var target_position = Vector2(775, -300)
+var target_position = Vector2(0, 0)
 var target_scale = Vector2(3,3)
 var x
 var y = 300
@@ -29,7 +29,8 @@ func _process(delta: float) -> void:
 	texture = load(cardTexture)
 	x = (-global.end[isDealer]+(((global.end[isDealer] * 2)/(global.delt[isDealer]+1))*num))
 	#target_position = Vector2(x, 300 + 10 * ((num + 1) % 2) )
-	target_position = Vector2(x, y)
+	if target_position != Vector2(775, -300):
+		target_position = Vector2(x, y)
 	
 	if position != target_position:
 		position.x = lerp(position.x, target_position.x, SPEED * delta)
