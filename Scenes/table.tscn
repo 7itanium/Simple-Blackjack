@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c446oaxmr7uo"]
+[gd_scene load_steps=10 format=3 uid="uid://c446oaxmr7uo"]
 
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_2fe8g"]
 [ext_resource type="Script" uid="uid://je1qp2c0d0cf" path="res://Scripts/game_manager.gd" id="1_dgbpv"]
 [ext_resource type="Texture2D" uid="uid://m7puj5cxuq1q" path="res://Sprites/Deck.png" id="3_u5355"]
 [ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="5_bmd77"]
+[ext_resource type="PackedScene" uid="uid://cffqxyjvaghce" path="res://Scenes/card.tscn" id="6_5cpa6"]
+[ext_resource type="FontFile" uid="uid://djmf3x3u2lnfm" path="res://Fonts/Minecraft.ttf" id="6_usajj"]
 [ext_resource type="AudioStream" uid="uid://bxlbmcvnx0g6k" path="res://Sounds/SFX/bridge.mp3" id="8_j277j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
@@ -27,7 +29,6 @@ animations = [{
 script = ExtResource("1_dgbpv")
 
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="Game Manager"]
-unique_name_in_owner = true
 stream = ExtResource("5_bmd77")
 
 [node name="BridgeSound" type="AudioStreamPlayer2D" parent="Game Manager"]
@@ -36,7 +37,7 @@ volume_db = -5.0
 
 [node name="Table" type="Node" parent="."]
 
-[node name="Green" type="Sprite2D" parent="Table"]
+[node name="Felt" type="Sprite2D" parent="Table"]
 z_index = -20
 texture = ExtResource("1_2fe8g")
 
@@ -52,4 +53,43 @@ sprite_frames = SubResource("SpriteFrames_mcqbc")
 visible = false
 points = PackedVector2Array(0, -550, 0, 597)
 
-[node name="Player Cards" type="Node" parent="."]
+[node name="dealerHandVal" type="Label" parent="Table"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = -4.48
+offset_top = -637.24
+offset_right = -7.36
+offset_bottom = -603.48
+theme_override_fonts/font = ExtResource("6_usajj")
+theme_override_font_sizes/font_size = 63
+text = "21"
+horizontal_alignment = 1
+
+[node name="playerHandVal" type="Label" parent="Table"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = -0.479996
+offset_top = 260.76
+offset_right = -3.36
+offset_bottom = 294.52
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_usajj")
+theme_override_font_sizes/font_size = 63
+text = "21"
+horizontal_alignment = 1
+
+[node name="Test" type="Node" parent="."]
+
+[node name="Sprite2D2" parent="Test" instance=ExtResource("6_5cpa6")]
+visible = false
+position = Vector2(0, -300)
+
+[node name="Sprite2D" parent="Test" instance=ExtResource("6_5cpa6")]
+visible = false
+position = Vector2(0, 300)

@@ -55,6 +55,6 @@ var deck = {
 	"KC": [10, "res://Sprites/Cards/Clubs/king.png"]
 }
 
-var delt = 0
-var end = 250
-var step = 50
+var delt = [0,0]
+var end = [250, 250]
+const STEP = 50
