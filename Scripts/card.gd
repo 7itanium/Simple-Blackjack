@@ -17,7 +17,7 @@ var cardTexture = "res://Sprites/Cards/back.png"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	position = Vector2(775, -300)
+	position = Vector2(775, 0)
 	if isDealer == 1:
 		y = -300
 
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	texture = load(cardTexture)
 	x = (-global.end[isDealer]+(((global.end[isDealer] * 2)/(global.delt[isDealer]+1))*num))
 	#target_position = Vector2(x, 300 + 10 * ((num + 1) % 2) )
-	if target_position != Vector2(775, -300):
+	if target_position != Vector2(775, 0):
 		target_position = Vector2(x, y)
 	
 	if position != target_position:

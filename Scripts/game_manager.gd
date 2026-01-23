@@ -68,7 +68,7 @@ func end():
 	await get_tree().create_timer(2).timeout
 	bridge_sound.play()
 	for card in cards:
-		card.target_position = Vector2(775, -300)
+		card.target_position = Vector2(775, 0)
 	await get_tree().create_timer(2).timeout
 	for card in cards:
 		card.queue_free()

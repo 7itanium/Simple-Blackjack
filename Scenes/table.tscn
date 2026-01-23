@@ -43,7 +43,7 @@ texture = ExtResource("1_2fe8g")
 
 [node name="Deck" type="AnimatedSprite2D" parent="Table"]
 z_index = 50
-position = Vector2(775, -300)
+position = Vector2(775, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_mcqbc")
 
