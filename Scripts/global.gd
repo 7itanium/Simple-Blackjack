@@ -58,3 +58,5 @@ var deck = {
 var delt = [0,0]
 var end = [250, 250]
 const STEP = 50
+
+var bet = [0, 0, 0, 0, 0, 0]

@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c446oaxmr7uo"]
+[gd_scene load_steps=12 format=3 uid="uid://c446oaxmr7uo"]
 
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_2fe8g"]
 [ext_resource type="Script" uid="uid://je1qp2c0d0cf" path="res://Scripts/game_manager.gd" id="1_dgbpv"]
 [ext_resource type="Texture2D" uid="uid://m7puj5cxuq1q" path="res://Sprites/Deck.png" id="3_u5355"]
 [ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="5_bmd77"]
 [ext_resource type="PackedScene" uid="uid://cffqxyjvaghce" path="res://Scenes/card.tscn" id="6_5cpa6"]
+[ext_resource type="Texture2D" uid="uid://dgo7d5h4t08ee" path="res://Sprites/Chips/Stack.png" id="6_o4lkm"]
 [ext_resource type="FontFile" uid="uid://djmf3x3u2lnfm" path="res://Fonts/Minecraft.ttf" id="6_usajj"]
 [ext_resource type="AudioStream" uid="uid://bxlbmcvnx0g6k" path="res://Sounds/SFX/bridge.mp3" id="8_j277j"]
+[ext_resource type="PackedScene" uid="uid://dv5u45javgpsd" path="res://Scenes/betting.tscn" id="9_xexre"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
 atlas = ExtResource("3_u5355")
@@ -37,21 +39,35 @@ volume_db = -5.0
 
 [node name="Table" type="Node" parent="."]
 
+[node name="Node2D" parent="Table" instance=ExtResource("9_xexre")]
+position = Vector2(0, 250)
+scale = Vector2(3, 3)
+
 [node name="Felt" type="Sprite2D" parent="Table"]
 z_index = -20
 texture = ExtResource("1_2fe8g")
+metadata/_edit_lock_ = true
 
 [node name="Deck" type="AnimatedSprite2D" parent="Table"]
 z_index = 50
 position = Vector2(775, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_mcqbc")
+metadata/_edit_lock_ = true
+
+[node name="DealerChips" type="Sprite2D" parent="Table"]
+z_index = -1
+position = Vector2(-679, -334)
+scale = Vector2(3, 3)
+texture = ExtResource("6_o4lkm")
 
 [node name="Player1 Camera" type="Camera2D" parent="Table"]
+metadata/_edit_lock_ = true
 
 [node name="Line2D" type="Line2D" parent="Table"]
 visible = false
 points = PackedVector2Array(0, -550, 0, 597)
+metadata/_edit_lock_ = true
 
 [node name="dealerHandVal" type="Label" parent="Table"]
 anchors_preset = -1

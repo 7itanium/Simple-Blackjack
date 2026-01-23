@@ -1,0 +1,328 @@
+[gd_scene load_steps=15 format=3 uid="uid://dv5u45javgpsd"]
+
+[ext_resource type="Script" uid="uid://dwjg5dl2dr7qx" path="res://Scripts/betUI.gd" id="1_4efgp"]
+[ext_resource type="Texture2D" uid="uid://dpbsbdnhrd2jx" path="res://Sprites/Chips/White.png" id="1_jp30r"]
+[ext_resource type="Texture2D" uid="uid://bjq1wtpvdhxef" path="res://Sprites/Chips/Green.png" id="2_gd2ac"]
+[ext_resource type="Texture2D" uid="uid://dkn5d4cjhw5ae" path="res://Sprites/BlueArrow.png" id="2_u5521"]
+[ext_resource type="Texture2D" uid="uid://l25481ag6fmv" path="res://Sprites/Chips/Red.png" id="3_u73kx"]
+[ext_resource type="Texture2D" uid="uid://230ms68jmatj" path="res://Sprites/WhiteArrow.png" id="4_0ptfu"]
+[ext_resource type="Texture2D" uid="uid://cc3h267nk3qxl" path="res://Sprites/Chips/Blue.png" id="4_7be7a"]
+[ext_resource type="Texture2D" uid="uid://ki7m1f4nkt30" path="res://Sprites/Chips/Black.png" id="5_b68gp"]
+[ext_resource type="Texture2D" uid="uid://dcnxsc51hd2ll" path="res://Sprites/Chips/BlackSide.png" id="6_7k2aw"]
+[ext_resource type="Texture2D" uid="uid://dse7qmgr2opgi" path="res://Sprites/Chips/WhiteSide.png" id="6_u73kx"]
+[ext_resource type="Texture2D" uid="uid://bao7g3hbk6v4l" path="res://Sprites/Chips/BlueSide.png" id="7_1c6xh"]
+[ext_resource type="Script" uid="uid://uy00y7y2rmui" path="res://Scripts/chip.gd" id="8_0ptfu"]
+[ext_resource type="Texture2D" uid="uid://ixvk26eu45oc" path="res://Sprites/Chips/GreenSide.png" id="8_u5521"]
+[ext_resource type="Texture2D" uid="uid://dbhs2asor1e2x" path="res://Sprites/Chips/RedSide.png" id="9_0ptfu"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_4efgp")
+
+[node name="Down" type="Node2D" parent="."]
+
+[node name="White" type="Sprite2D" parent="Down"]
+position = Vector2(25, 20)
+texture = ExtResource("1_jp30r")
+script = ExtResource("8_0ptfu")
+
+[node name="BlueArrow" type="Sprite2D" parent="Down/White"]
+position = Vector2(0, 1)
+rotation = -3.14159
+texture = ExtResource("2_u5521")
+
+[node name="Red" type="Sprite2D" parent="Down"]
+position = Vector2(60, 20)
+texture = ExtResource("3_u73kx")
+script = ExtResource("8_0ptfu")
+
+[node name="WhiteArrow" type="Sprite2D" parent="Down/Red"]
+position = Vector2(0, 1)
+rotation = 3.14159
+texture = ExtResource("4_0ptfu")
+
+[node name="Green" type="Sprite2D" parent="Down"]
+position = Vector2(95, 20)
+texture = ExtResource("2_gd2ac")
+script = ExtResource("8_0ptfu")
+
+[node name="WhiteArrow" type="Sprite2D" parent="Down/Green"]
+position = Vector2(0, 1)
+rotation = 3.14159
+texture = ExtResource("4_0ptfu")
+
+[node name="Blue" type="Sprite2D" parent="Down"]
+position = Vector2(130, 20)
+texture = ExtResource("4_7be7a")
+script = ExtResource("8_0ptfu")
+
+[node name="WhiteArrow" type="Sprite2D" parent="Down/Blue"]
+position = Vector2(0, 1)
+rotation = 3.14159
+texture = ExtResource("4_0ptfu")
+
+[node name="Black" type="Sprite2D" parent="Down"]
+position = Vector2(165, 20)
+texture = ExtResource("5_b68gp")
+script = ExtResource("8_0ptfu")
+
+[node name="WhiteArrow" type="Sprite2D" parent="Down/Black"]
+position = Vector2(0, 1)
+rotation = 3.14159
+texture = ExtResource("4_0ptfu")
+
+[node name="Up" type="Node2D" parent="."]
+
+[node name="White" type="Sprite2D" parent="Up"]
+position = Vector2(25, -20)
+texture = ExtResource("1_jp30r")
+script = ExtResource("8_0ptfu")
+
+[node name="BlueArrow" type="Sprite2D" parent="Up/White"]
+position = Vector2(0, -1)
+texture = ExtResource("2_u5521")
+
+[node name="Red" type="Sprite2D" parent="Up"]
+position = Vector2(60, -20)
+texture = ExtResource("3_u73kx")
+script = ExtResource("8_0ptfu")
+
+[node name="WhiteArrow" type="Sprite2D" parent="Up/Red"]
+position = Vector2(0, -1)
+texture = ExtResource("4_0ptfu")
+
+[node name="Green" type="Sprite2D" parent="Up"]
+position = Vector2(95, -20)
+texture = ExtResource("2_gd2ac")
+script = ExtResource("8_0ptfu")
+
+[node name="WhiteArrow" type="Sprite2D" parent="Up/Green"]
+position = Vector2(0, -1)
+texture = ExtResource("4_0ptfu")
+
+[node name="Blue" type="Sprite2D" parent="Up"]
+position = Vector2(130, -20)
+texture = ExtResource("4_7be7a")
+script = ExtResource("8_0ptfu")
+
+[node name="WhiteArrow" type="Sprite2D" parent="Up/Blue"]
+position = Vector2(0, -1)
+texture = ExtResource("4_0ptfu")
+
+[node name="Black" type="Sprite2D" parent="Up"]
+position = Vector2(165, -20)
+texture = ExtResource("5_b68gp")
+script = ExtResource("8_0ptfu")
+
+[node name="WhiteArrow" type="Sprite2D" parent="Up/Black"]
+position = Vector2(0, -1)
+texture = ExtResource("4_0ptfu")
+
+[node name="Black Stack" type="Node2D" parent="."]
+
+[node name="Black" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-170, 9)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black2" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-169, 7)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black3" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-170, 5)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black4" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-169, 3)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black5" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-170, 1)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black6" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-169, -1)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black7" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-170, -3)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black8" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-169, -5)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black9" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-170, -7)
+texture = ExtResource("6_7k2aw")
+
+[node name="Black10" type="Sprite2D" parent="Black Stack"]
+position = Vector2(-169, -9)
+texture = ExtResource("6_7k2aw")
+
+[node name="Blue Stack" type="Node2D" parent="."]
+
+[node name="Blue" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-134, 9)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue2" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-133, 7)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue3" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-134, 5)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue4" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-133, 3)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue5" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-134, 1)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue6" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-133, -1)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue7" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-134, -3)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue8" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-133, -5)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue9" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-134, -7)
+texture = ExtResource("7_1c6xh")
+
+[node name="Blue10" type="Sprite2D" parent="Blue Stack"]
+position = Vector2(-133, -9)
+texture = ExtResource("7_1c6xh")
+
+[node name="Green Stack" type="Node2D" parent="."]
+
+[node name="Green" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-98, 9)
+texture = ExtResource("8_u5521")
+
+[node name="Green2" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-97, 7)
+texture = ExtResource("8_u5521")
+
+[node name="Green3" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-98, 5)
+texture = ExtResource("8_u5521")
+
+[node name="Green4" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-97, 3)
+texture = ExtResource("8_u5521")
+
+[node name="Green5" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-98, 1)
+texture = ExtResource("8_u5521")
+
+[node name="Green6" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-97, -1)
+texture = ExtResource("8_u5521")
+
+[node name="Green7" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-98, -3)
+texture = ExtResource("8_u5521")
+
+[node name="Green8" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-97, -5)
+texture = ExtResource("8_u5521")
+
+[node name="Green9" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-98, -7)
+texture = ExtResource("8_u5521")
+
+[node name="Green10" type="Sprite2D" parent="Green Stack"]
+position = Vector2(-97, -9)
+texture = ExtResource("8_u5521")
+
+[node name="RedStack" type="Node2D" parent="."]
+
+[node name="Red" type="Sprite2D" parent="RedStack"]
+position = Vector2(-62, 9)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red2" type="Sprite2D" parent="RedStack"]
+position = Vector2(-61, 7)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red3" type="Sprite2D" parent="RedStack"]
+position = Vector2(-62, 5)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red4" type="Sprite2D" parent="RedStack"]
+position = Vector2(-61, 3)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red5" type="Sprite2D" parent="RedStack"]
+position = Vector2(-62, 1)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red6" type="Sprite2D" parent="RedStack"]
+position = Vector2(-61, -1)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red7" type="Sprite2D" parent="RedStack"]
+position = Vector2(-62, -3)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red8" type="Sprite2D" parent="RedStack"]
+position = Vector2(-61, -5)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red9" type="Sprite2D" parent="RedStack"]
+position = Vector2(-62, -7)
+texture = ExtResource("9_0ptfu")
+
+[node name="Red10" type="Sprite2D" parent="RedStack"]
+position = Vector2(-61, -9)
+texture = ExtResource("9_0ptfu")
+
+[node name="WhiteStack" type="Node2D" parent="."]
+
+[node name="Red" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-26, 9)
+texture = ExtResource("6_u73kx")
+
+[node name="Red2" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-25, 7)
+texture = ExtResource("6_u73kx")
+
+[node name="Red3" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-26, 5)
+texture = ExtResource("6_u73kx")
+
+[node name="Red4" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-25, 3)
+texture = ExtResource("6_u73kx")
+
+[node name="Red5" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-26, 1)
+texture = ExtResource("6_u73kx")
+
+[node name="Red6" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-25, -1)
+texture = ExtResource("6_u73kx")
+
+[node name="Red7" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-26, -3)
+texture = ExtResource("6_u73kx")
+
+[node name="Red8" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-25, -5)
+texture = ExtResource("6_u73kx")
+
+[node name="Red9" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-26, -7)
+texture = ExtResource("6_u73kx")
+
+[node name="Red10" type="Sprite2D" parent="WhiteStack"]
+position = Vector2(-25, -9)
+texture = ExtResource("6_u73kx")
