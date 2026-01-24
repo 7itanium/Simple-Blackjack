@@ -74,4 +74,4 @@ var chipColors = [
 	"res://Sprites/Chips/Black.png"
 ]
 
-var chipValues = [1, 5, 10, 25, 50]
+var chipValues = [1, 5, 10, 25, 100]
