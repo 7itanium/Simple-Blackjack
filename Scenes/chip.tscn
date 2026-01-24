@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuo5h0xeximhb"]
+
+[ext_resource type="Texture2D" uid="uid://l25481ag6fmv" path="res://Sprites/Chips/Red.png" id="1_b23m7"]
+[ext_resource type="Script" uid="uid://dls5njif0x1h3" path="res://Scripts/chipHand.gd" id="2_y64u0"]
+
+[node name="Sprite2D" type="Sprite2D"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_b23m7")
+script = ExtResource("2_y64u0")

@@ -1,25 +1,48 @@
 extends Node2D
 
-@onready var whiteUp: Sprite2D = $Down/White
-@onready var redUp: Sprite2D = $Down/Red
-@onready var greenUp: Sprite2D = $Down/Green
-@onready var blueUp: Sprite2D = $Down/Blue
-@onready var blackUp: Sprite2D = $Down/Black
-@onready var whiteDown: Sprite2D = $Up/White
-@onready var redDown: Sprite2D = $Up/Red
-@onready var greenDown: Sprite2D = $Up/Green
-@onready var blueDown: Sprite2D = $Up/Blue
-@onready var blackDown: Sprite2D = $Up/Black
+@onready var chips = [$Up/White, $Down/White, $Up/Red, $Down/Red, $Up/Green, $Down/Green, $Up/Blue, $Down/Blue, $Up/Black, $Down/Black]
+
+@onready var whiteChips = [$WhiteStack/White, $WhiteStack/White2, $WhiteStack/White3, $WhiteStack/White4, $WhiteStack/White5, $WhiteStack/White6, $WhiteStack/White7, $WhiteStack/White8, $WhiteStack/White9, $WhiteStack/White10]
+@onready var redChips = [$RedStack/Red, $RedStack/Red2, $RedStack/Red3, $RedStack/Red4, $RedStack/Red5, $RedStack/Red6, $RedStack/Red7, $RedStack/Red8, $RedStack/Red9, $RedStack/Red10]
+@onready var greenChips = [$"Green Stack/Green", $"Green Stack/Green2", $"Green Stack/Green3", $"Green Stack/Green4", $"Green Stack/Green5", $"Green Stack/Green6", $"Green Stack/Green7", $"Green Stack/Green8", $"Green Stack/Green9", $"Green Stack/Green10"]
+@onready var blueChips = [$"Blue Stack/Blue", $"Blue Stack/Blue2", $"Blue Stack/Blue3", $"Blue Stack/Blue4", $"Blue Stack/Blue5", $"Blue Stack/Blue6", $"Blue Stack/Blue7", $"Blue Stack/Blue8", $"Blue Stack/Blue9", $"Blue Stack/Blue10"]
+@onready var blackChips = [$"Black Stack/Black", $"Black Stack/Black2", $"Black Stack/Black3", $"Black Stack/Black4", $"Black Stack/Black5", $"Black Stack/Black6", $"Black Stack/Black7", $"Black Stack/Black8", $"Black Stack/Black9", $"Black Stack/Black10"]
+
+@onready var displayChips = [whiteChips, redChips, greenChips, blueChips, blackChips]
+
+@onready var values = [5, 10, 25, 50, 100]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var chips = [whiteUp, whiteDown, redUp, redDown, greenUp, greenDown, blueUp, blueDown, blackUp, blackDown]
-	var direction = -1
+	var direction = 1
 	var val = 0
 	for chip in chips:
 		chip.direction = direction
-		chip.chip = val
+		chip.color = val
 		
 		direction *= -1
-		if direction == -1:
+		if direction == 1:
 			val += 1
+	checkBal()
+
+func checkBal():
+	if global.money < 5:
+		chips[0].modulate.a = 0.5
+	else:
+		chips[0].modulate.a = 1
+	if global.money < 10:
+		chips[2].modulate.a = 0.5
+	else:
+		chips[2].modulate.a = 1
+	if global.money < 25:
+		chips[4].modulate.a = 0.5
+	else:
+		chips[4].modulate.a = 1
+	if global.money < 50:
+		chips[6].modulate.a = 0.5
+	else:
+		chips[6].modulate.a = 1
+	if global.money < 100:
+		chips[8].modulate.a = 0.5
+	else:
+		chips[8].modulate.a = 1

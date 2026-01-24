@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dv5u45javgpsd"]
+[gd_scene load_steps=17 format=3 uid="uid://dv5u45javgpsd"]
 
 [ext_resource type="Script" uid="uid://dwjg5dl2dr7qx" path="res://Scripts/betUI.gd" id="1_4efgp"]
 [ext_resource type="Texture2D" uid="uid://dpbsbdnhrd2jx" path="res://Sprites/Chips/White.png" id="1_jp30r"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://uy00y7y2rmui" path="res://Scripts/chip.gd" id="8_0ptfu"]
 [ext_resource type="Texture2D" uid="uid://ixvk26eu45oc" path="res://Sprites/Chips/GreenSide.png" id="8_u5521"]
 [ext_resource type="Texture2D" uid="uid://dbhs2asor1e2x" path="res://Sprites/Chips/RedSide.png" id="9_0ptfu"]
+[ext_resource type="Texture2D" uid="uid://bospe4g31evvl" path="res://Sprites/Chips/Check.png" id="15_w4552"]
+[ext_resource type="Script" uid="uid://mt526l4cpyoc" path="res://Scripts/check.gd" id="16_j1w16"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4efgp")
@@ -120,209 +122,264 @@ texture = ExtResource("4_0ptfu")
 [node name="Black Stack" type="Node2D" parent="."]
 
 [node name="Black" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-170, 9)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black2" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-169, 7)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black3" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-170, 5)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black4" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-169, 3)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black5" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-170, 1)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black6" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-169, -1)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black7" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-170, -3)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black8" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-169, -5)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black9" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-170, -7)
 texture = ExtResource("6_7k2aw")
 
 [node name="Black10" type="Sprite2D" parent="Black Stack"]
+visible = false
 position = Vector2(-169, -9)
 texture = ExtResource("6_7k2aw")
 
 [node name="Blue Stack" type="Node2D" parent="."]
 
 [node name="Blue" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-134, 9)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue2" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-133, 7)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue3" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-134, 5)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue4" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-133, 3)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue5" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-134, 1)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue6" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-133, -1)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue7" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-134, -3)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue8" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-133, -5)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue9" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-134, -7)
 texture = ExtResource("7_1c6xh")
 
 [node name="Blue10" type="Sprite2D" parent="Blue Stack"]
+visible = false
 position = Vector2(-133, -9)
 texture = ExtResource("7_1c6xh")
 
 [node name="Green Stack" type="Node2D" parent="."]
 
 [node name="Green" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-98, 9)
 texture = ExtResource("8_u5521")
 
 [node name="Green2" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-97, 7)
 texture = ExtResource("8_u5521")
 
 [node name="Green3" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-98, 5)
 texture = ExtResource("8_u5521")
 
 [node name="Green4" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-97, 3)
 texture = ExtResource("8_u5521")
 
 [node name="Green5" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-98, 1)
 texture = ExtResource("8_u5521")
 
 [node name="Green6" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-97, -1)
 texture = ExtResource("8_u5521")
 
 [node name="Green7" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-98, -3)
 texture = ExtResource("8_u5521")
 
 [node name="Green8" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-97, -5)
 texture = ExtResource("8_u5521")
 
 [node name="Green9" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-98, -7)
 texture = ExtResource("8_u5521")
 
 [node name="Green10" type="Sprite2D" parent="Green Stack"]
+visible = false
 position = Vector2(-97, -9)
 texture = ExtResource("8_u5521")
 
 [node name="RedStack" type="Node2D" parent="."]
 
 [node name="Red" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-62, 9)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red2" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-61, 7)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red3" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-62, 5)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red4" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-61, 3)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red5" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-62, 1)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red6" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-61, -1)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red7" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-62, -3)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red8" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-61, -5)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red9" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-62, -7)
 texture = ExtResource("9_0ptfu")
 
 [node name="Red10" type="Sprite2D" parent="RedStack"]
+visible = false
 position = Vector2(-61, -9)
 texture = ExtResource("9_0ptfu")
 
 [node name="WhiteStack" type="Node2D" parent="."]
 
-[node name="Red" type="Sprite2D" parent="WhiteStack"]
+[node name="White" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-26, 9)
 texture = ExtResource("6_u73kx")
 
-[node name="Red2" type="Sprite2D" parent="WhiteStack"]
+[node name="White2" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-25, 7)
 texture = ExtResource("6_u73kx")
 
-[node name="Red3" type="Sprite2D" parent="WhiteStack"]
+[node name="White3" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-26, 5)
 texture = ExtResource("6_u73kx")
 
-[node name="Red4" type="Sprite2D" parent="WhiteStack"]
+[node name="White4" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-25, 3)
 texture = ExtResource("6_u73kx")
 
-[node name="Red5" type="Sprite2D" parent="WhiteStack"]
+[node name="White5" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-26, 1)
 texture = ExtResource("6_u73kx")
 
-[node name="Red6" type="Sprite2D" parent="WhiteStack"]
+[node name="White6" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-25, -1)
 texture = ExtResource("6_u73kx")
 
-[node name="Red7" type="Sprite2D" parent="WhiteStack"]
+[node name="White7" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-26, -3)
 texture = ExtResource("6_u73kx")
 
-[node name="Red8" type="Sprite2D" parent="WhiteStack"]
+[node name="White8" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-25, -5)
 texture = ExtResource("6_u73kx")
 
-[node name="Red9" type="Sprite2D" parent="WhiteStack"]
+[node name="White9" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-26, -7)
 texture = ExtResource("6_u73kx")
 
-[node name="Red10" type="Sprite2D" parent="WhiteStack"]
+[node name="White10" type="Sprite2D" parent="WhiteStack"]
+visible = false
 position = Vector2(-25, -9)
 texture = ExtResource("6_u73kx")
+
+[node name="Check" type="Sprite2D" parent="."]
+position = Vector2(200, 0)
+texture = ExtResource("15_w4552")
+script = ExtResource("16_j1w16")

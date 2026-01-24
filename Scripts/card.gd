@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 		position.x = lerp(position.x, target_position.x, SPEED * delta)
 		position.y = lerp(position.y, target_position.y, SPEED * delta)
 	
-	if position.distance_to(target_position) < 1:
-		position = target_position
+		if position.distance_to(target_position) < 1:
+			position = target_position
 	
 	scale.x = lerp(scale.x, target_scale.x, SPEED * 1.5 * delta)

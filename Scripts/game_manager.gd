@@ -3,21 +3,25 @@ extends Node
 @onready var flip_sound: AudioStreamPlayer2D = $FlipSound
 @onready var player_hand_val: Label = $"../Table/playerHandVal"
 @onready var dealer_hand_val: Label = $"../Table/dealerHandVal"
+@onready var money: Label = $"../Table/Money"
 @onready var bridge_sound: AudioStreamPlayer2D = $BridgeSound
 
 var new_card = preload("res://Scenes/card.tscn")
+var bettingScene = preload("res://Scenes/betting.tscn")
 var liveDeck = global.deck.keys()
 var playerHand = [0, false, 0]
 var dealerHand = [0, false, 1]
 var isPlayerTurn = false
 var isDealerTurn = false
+var isBetting = true
 var dealerDown
+var bettingUI
 var cards = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#start()
-	pass
+	global.money = 1000
+	getBet()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -27,32 +31,54 @@ func _process(delta: float) -> void:
 		cards = []
 		get_tree().reload_current_scene()
 	
+	money.text = "$" + str(global.money)
 	
-	if playerHand[0] > 21:
-		player_hand_val.text = str(playerHand[0]) + ", Bust!"
-	else: 
-		player_hand_val.text = str(playerHand[0])
-	if dealerHand[0] > 21:
-		dealer_hand_val.text = str(dealerHand[0]) + ", Bust!"
-	else: 
-		dealer_hand_val.text = str(dealerHand[0])
-	
-	
-	if Input.is_action_just_pressed("Hit") and isPlayerTurn == true:
-		deal_card(playerHand, false)
+	if isBetting:
+		dealer_hand_val.text = "Dealer must draw to 16 and stand on 17"
+		player_hand_val.text = str(global.bet[5])
 		
-	if Input.is_action_just_pressed("Stand") and isPlayerTurn == true:
-		dealerTurn()
+		if global.dealCards:
+			dealCards()
+	else:
 		
-	if playerHand[0] > 21 and isPlayerTurn == true:
-		isPlayerTurn = false
-		await get_tree().create_timer(1.2).timeout
-		end()
-	
-	if isDealerTurn == true and dealerDown.scale.x > 0 and dealerDown.value == 0:
-		choose_card(dealerDown, dealerHand)
+		if playerHand[0] > 21:
+			player_hand_val.text = str(playerHand[0]) + ", Bust!"
+		else: 
+			player_hand_val.text = str(playerHand[0])
+		if dealerHand[0] > 21:
+			dealer_hand_val.text = str(dealerHand[0]) + ", Bust!"
+		else: 
+			dealer_hand_val.text = str(dealerHand[0])
+		
+		
+		if Input.is_action_just_pressed("Hit") and isPlayerTurn == true:
+			deal_card(playerHand, false)
+			
+		if Input.is_action_just_pressed("Stand") and isPlayerTurn == true:
+			dealerTurn()
+			
+		if playerHand[0] > 21 and isPlayerTurn == true:
+			isPlayerTurn = false
+			await get_tree().create_timer(1.2).timeout
+			end()
+		
+		if isDealerTurn == true and dealerDown.scale.x > 0 and dealerDown.value == 0:
+			choose_card(dealerDown, dealerHand)
 
-func start():
+func getBet():
+	global.bet = [0, 0, 0, 0, 0, 0]
+	global.chips = 0
+	isBetting = true
+	var instance = bettingScene.instantiate()
+	instance.scale = Vector2(3,3)
+	instance.position = Vector2(0,250)
+	bettingUI = instance
+	add_child(instance)
+
+func dealCards():
+	bettingUI.queue_free()
+	global.dealCards = false
+	isBetting = false
 	deal_card(dealerHand, false)
 	await get_tree().create_timer(.2).timeout
 	deal_card(playerHand, false)
@@ -68,6 +94,8 @@ func end():
 	isPlayerTurn = false
 	await get_tree().create_timer(2).timeout
 	bridge_sound.play()
+	if dealerHand[0] > 21 or (playerHand[0] > dealerHand[0] and playerHand[0] < 22):
+		global.money += global.bet[5] * 2
 	for card in cards:
 		card.target_position = Vector2(775, 0)
 	await get_tree().create_timer(2).timeout
@@ -79,7 +107,7 @@ func end():
 	liveDeck = global.deck.keys()
 	playerHand = [0, false, 0]
 	dealerHand = [0, false, 1]
-	start()
+	getBet()
 
 func dealerTurn():
 	isPlayerTurn = false

@@ -58,5 +58,10 @@ var deck = {
 var delt = [0,0]
 var end = [250, 250]
 const STEP = 50
+var dealCards = false
 
 var bet = [0, 0, 0, 0, 0, 0]
+
+var money = 1000
+
+var chips = 0

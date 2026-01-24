@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c446oaxmr7uo"]
+[gd_scene load_steps=13 format=3 uid="uid://c446oaxmr7uo"]
 
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_2fe8g"]
 [ext_resource type="Script" uid="uid://je1qp2c0d0cf" path="res://Scripts/game_manager.gd" id="1_dgbpv"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dgo7d5h4t08ee" path="res://Sprites/Chips/Stack.png" id="6_o4lkm"]
 [ext_resource type="FontFile" uid="uid://djmf3x3u2lnfm" path="res://Fonts/Minecraft.ttf" id="6_usajj"]
 [ext_resource type="AudioStream" uid="uid://bxlbmcvnx0g6k" path="res://Sounds/SFX/bridge.mp3" id="8_j277j"]
-[ext_resource type="PackedScene" uid="uid://dv5u45javgpsd" path="res://Scenes/betting.tscn" id="9_xexre"]
+[ext_resource type="Texture2D" uid="uid://l25481ag6fmv" path="res://Sprites/Chips/Red.png" id="8_xexre"]
+[ext_resource type="PackedScene" uid="uid://cuo5h0xeximhb" path="res://Scenes/chip.tscn" id="10_4ntqo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
 atlas = ExtResource("3_u5355")
@@ -28,6 +29,7 @@ animations = [{
 [node name="table" type="Node2D"]
 
 [node name="Game Manager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_dgbpv")
 
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="Game Manager"]
@@ -38,10 +40,6 @@ stream = ExtResource("8_j277j")
 volume_db = -5.0
 
 [node name="Table" type="Node" parent="."]
-
-[node name="Node2D" parent="Table" instance=ExtResource("9_xexre")]
-position = Vector2(0, 250)
-scale = Vector2(3, 3)
 
 [node name="Felt" type="Sprite2D" parent="Table"]
 z_index = -20
@@ -69,15 +67,31 @@ visible = false
 points = PackedVector2Array(0, -550, 0, 597)
 metadata/_edit_lock_ = true
 
+[node name="Money" type="Label" parent="Table"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = -811.48
+offset_top = 232.76
+offset_right = -899.36
+offset_bottom = 266.52
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_usajj")
+theme_override_font_sizes/font_size = 63
+text = "$"
+horizontal_alignment = 1
+
 [node name="dealerHandVal" type="Label" parent="Table"]
 anchors_preset = -1
 anchor_left = -0.031
 anchor_top = 0.153
 anchor_right = 0.033
 anchor_bottom = 0.181
-offset_left = -77.48
+offset_left = -308.48
 offset_top = -637.24
-offset_right = 73.64
+offset_right = 304.64
 offset_bottom = -603.48
 theme_override_fonts/font = ExtResource("6_usajj")
 theme_override_font_sizes/font_size = 63
@@ -100,6 +114,18 @@ theme_override_font_sizes/font_size = 63
 text = "21"
 horizontal_alignment = 1
 
+[node name="Red2" type="Sprite2D" parent="Table"]
+visible = false
+position = Vector2(-825, 300)
+scale = Vector2(3, 3)
+texture = ExtResource("8_xexre")
+
+[node name="Red" type="Sprite2D" parent="Table"]
+visible = false
+position = Vector2(-575, 300)
+scale = Vector2(3, 3)
+texture = ExtResource("8_xexre")
+
 [node name="Test" type="Node" parent="."]
 
 [node name="Sprite2D2" parent="Test" instance=ExtResource("6_5cpa6")]
@@ -109,3 +135,7 @@ position = Vector2(0, -300)
 [node name="Sprite2D" parent="Test" instance=ExtResource("6_5cpa6")]
 visible = false
 position = Vector2(0, 300)
+
+[node name="Sprite2D" parent="." instance=ExtResource("10_4ntqo")]
+visible = false
+position = Vector2(-703, 290)
