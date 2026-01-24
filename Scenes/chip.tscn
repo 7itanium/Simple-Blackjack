@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dls5njif0x1h3" path="res://Scripts/chipHand.gd" id="2_y64u0"]
 
 [node name="Sprite2D" type="Sprite2D"]
+z_index = -1
 scale = Vector2(3, 3)
 texture = ExtResource("1_b23m7")
 script = ExtResource("2_y64u0")

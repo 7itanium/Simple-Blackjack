@@ -10,7 +10,10 @@ extends Node2D
 
 @onready var displayChips = [whiteChips, redChips, greenChips, blueChips, blackChips]
 
-@onready var values = [5, 10, 25, 50, 100]
+@onready var check: Sprite2D = $Check
+
+@onready var values = global.chipValues
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,23 +29,32 @@ func _ready() -> void:
 	checkBal()
 
 func checkBal():
-	if global.money < 5:
+	if global.bet[5] == 0:
+		check.modulate.a = 0.5
+	else:
+		check.modulate.a = 1
+		
+	if global.money < values[0]:
 		chips[0].modulate.a = 0.5
 	else:
 		chips[0].modulate.a = 1
-	if global.money < 10:
+		
+	if global.money < values[1]:
 		chips[2].modulate.a = 0.5
 	else:
 		chips[2].modulate.a = 1
-	if global.money < 25:
+		
+	if global.money < values[2]:
 		chips[4].modulate.a = 0.5
 	else:
 		chips[4].modulate.a = 1
-	if global.money < 50:
+		
+	if global.money < values[3]:
 		chips[6].modulate.a = 0.5
 	else:
 		chips[6].modulate.a = 1
-	if global.money < 100:
+		
+	if global.money < values[4]:
 		chips[8].modulate.a = 0.5
 	else:
 		chips[8].modulate.a = 1

@@ -3,13 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_2fe8g"]
 [ext_resource type="Script" uid="uid://je1qp2c0d0cf" path="res://Scripts/game_manager.gd" id="1_dgbpv"]
 [ext_resource type="Texture2D" uid="uid://m7puj5cxuq1q" path="res://Sprites/Deck.png" id="3_u5355"]
+[ext_resource type="AudioStream" uid="uid://b6cjku77mqcqs" path="res://Sounds/SFX/chip_pile.mp3" id="4_4ntqo"]
 [ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="5_bmd77"]
-[ext_resource type="PackedScene" uid="uid://cffqxyjvaghce" path="res://Scenes/card.tscn" id="6_5cpa6"]
 [ext_resource type="Texture2D" uid="uid://dgo7d5h4t08ee" path="res://Sprites/Chips/Stack.png" id="6_o4lkm"]
 [ext_resource type="FontFile" uid="uid://djmf3x3u2lnfm" path="res://Fonts/Minecraft.ttf" id="6_usajj"]
 [ext_resource type="AudioStream" uid="uid://bxlbmcvnx0g6k" path="res://Sounds/SFX/bridge.mp3" id="8_j277j"]
-[ext_resource type="Texture2D" uid="uid://l25481ag6fmv" path="res://Sprites/Chips/Red.png" id="8_xexre"]
-[ext_resource type="PackedScene" uid="uid://cuo5h0xeximhb" path="res://Scenes/chip.tscn" id="10_4ntqo"]
+[ext_resource type="Texture2D" uid="uid://dv0l6wryxbu52" path="res://Sprites/Chips/stand.png" id="9_4ntqo"]
+[ext_resource type="Texture2D" uid="uid://b610mdgwmf4xx" path="res://Sprites/Chips/Hit.png" id="10_x0duj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
 atlas = ExtResource("3_u5355")
@@ -38,6 +38,9 @@ stream = ExtResource("5_bmd77")
 [node name="BridgeSound" type="AudioStreamPlayer2D" parent="Game Manager"]
 stream = ExtResource("8_j277j")
 volume_db = -5.0
+
+[node name="ChipPileSound" type="AudioStreamPlayer2D" parent="Game Manager"]
+stream = ExtResource("4_4ntqo")
 
 [node name="Table" type="Node" parent="."]
 
@@ -114,28 +117,14 @@ theme_override_font_sizes/font_size = 63
 text = "21"
 horizontal_alignment = 1
 
-[node name="Red2" type="Sprite2D" parent="Table"]
+[node name="Stand" type="Sprite2D" parent="Table"]
 visible = false
-position = Vector2(-825, 300)
+position = Vector2(675, 300)
 scale = Vector2(3, 3)
-texture = ExtResource("8_xexre")
+texture = ExtResource("9_4ntqo")
 
-[node name="Red" type="Sprite2D" parent="Table"]
+[node name="Hit" type="Sprite2D" parent="Table"]
 visible = false
-position = Vector2(-575, 300)
+position = Vector2(575, 300)
 scale = Vector2(3, 3)
-texture = ExtResource("8_xexre")
-
-[node name="Test" type="Node" parent="."]
-
-[node name="Sprite2D2" parent="Test" instance=ExtResource("6_5cpa6")]
-visible = false
-position = Vector2(0, -300)
-
-[node name="Sprite2D" parent="Test" instance=ExtResource("6_5cpa6")]
-visible = false
-position = Vector2(0, 300)
-
-[node name="Sprite2D" parent="." instance=ExtResource("10_4ntqo")]
-visible = false
-position = Vector2(-703, 290)
+texture = ExtResource("10_x0duj")

@@ -1,17 +1,22 @@
 extends Sprite2D
 
-var chipTexture = "res://Sprites/Chips/White.png"
+var chipTexture = "res://Sprites/Chips/Check.png"
 
 var target_position = Vector2(0, 0)
-var num
+var num = 0
 var x
+var y = 300
 const SPEED = 5.0 
+var losing = false
+
+func _ready() -> void:
+	position = Vector2(-470, 300)
+	texture = load(chipTexture)
 
 func _process(delta: float) -> void:
-	texture = load(chipTexture)
-	
-	x = 0
-	target_position = Vector2(x, 300)
+	if not losing:
+		x = (-825 + ((250 / (global.chips + 1)) * num))
+	target_position = Vector2(x, y)
 	
 	if position != target_position:
 		position.x = lerp(position.x, target_position.x, SPEED * delta)

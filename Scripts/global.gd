@@ -62,6 +62,16 @@ var dealCards = false
 
 var bet = [0, 0, 0, 0, 0, 0]
 
-var money = 1000
+var money = 100
 
 var chips = 0
+
+var chipColors = [
+	"res://Sprites/Chips/White.png",
+	"res://Sprites/Chips/Red.png",
+	"res://Sprites/Chips/Green.png",
+	"res://Sprites/Chips/Blue.png",
+	"res://Sprites/Chips/Black.png"
+]
+
+var chipValues = [1, 5, 10, 25, 50]

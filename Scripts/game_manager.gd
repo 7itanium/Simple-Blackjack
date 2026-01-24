@@ -1,12 +1,20 @@
 extends Node
 
 @onready var flip_sound: AudioStreamPlayer2D = $FlipSound
+@onready var bridge_sound: AudioStreamPlayer2D = $BridgeSound
+@onready var chip_pile_sound: AudioStreamPlayer2D = $ChipPileSound
+
+@onready var stand: Sprite2D = $"../Table/Stand"
+@onready var hit: Sprite2D = $"../Table/Hit"
+
+
 @onready var player_hand_val: Label = $"../Table/playerHandVal"
 @onready var dealer_hand_val: Label = $"../Table/dealerHandVal"
 @onready var money: Label = $"../Table/Money"
-@onready var bridge_sound: AudioStreamPlayer2D = $BridgeSound
+
 
 var new_card = preload("res://Scenes/card.tscn")
+var new_chip = preload("res://Scenes/chip.tscn")
 var bettingScene = preload("res://Scenes/betting.tscn")
 var liveDeck = global.deck.keys()
 var playerHand = [0, false, 0]
@@ -17,10 +25,13 @@ var isBetting = true
 var dealerDown
 var bettingUI
 var cards = []
+var chips = []
+var chipsWon = []
+var blackjackPay = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	global.money = 1000
+	global.money = 100
 	getBet()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,10 +54,14 @@ func _process(delta: float) -> void:
 		
 		if playerHand[0] > 21:
 			player_hand_val.text = str(playerHand[0]) + ", Bust!"
+		elif playerHand[0] == 21 and global.delt[0] == 2:
+			player_hand_val.text = "Blackjack!"
 		else: 
 			player_hand_val.text = str(playerHand[0])
 		if dealerHand[0] > 21:
 			dealer_hand_val.text = str(dealerHand[0]) + ", Bust!"
+		elif dealerHand[0] == 21 and global.delt[1] == 2:
+			dealer_hand_val.text = "Blackjack!"
 		else: 
 			dealer_hand_val.text = str(dealerHand[0])
 		
@@ -54,7 +69,10 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("Hit") and isPlayerTurn == true:
 			deal_card(playerHand, false)
 			
-		if Input.is_action_just_pressed("Stand") and isPlayerTurn == true:
+		if (Input.is_action_just_pressed("Stand") or playerHand[0] == 21) and isPlayerTurn == true:
+			isPlayerTurn = false
+			if playerHand[0] == 21:
+				await get_tree().create_timer(1).timeout
 			dealerTurn()
 			
 		if playerHand[0] > 21 and isPlayerTurn == true:
@@ -79,6 +97,9 @@ func dealCards():
 	bettingUI.queue_free()
 	global.dealCards = false
 	isBetting = false
+	
+	dealChips()
+	
 	deal_card(dealerHand, false)
 	await get_tree().create_timer(.2).timeout
 	deal_card(playerHand, false)
@@ -88,25 +109,99 @@ func dealCards():
 	deal_card(playerHand, false)
 	await get_tree().create_timer(.5).timeout
 	isPlayerTurn = true
-	
+
+func dealChips():
+	for i in range(5):
+		for j in range(global.bet[i]):
+			global.chips += 1
+			var instance = new_chip.instantiate()
+			instance.num = global.chips
+			instance.chipTexture = global.chipColors[i]
+			
+			var winnings = new_chip.instantiate()
+			winnings.num = global.chips
+			winnings.chipTexture = global.chipColors[i]
+			winnings.z_index = -2
+			winnings.visible = false
+			
+			chips.append(instance)
+			chipsWon.append(winnings)
+			add_child(instance)
+			add_child(winnings)
+
 func end():
 	isDealerTurn = false
 	isPlayerTurn = false
 	await get_tree().create_timer(2).timeout
-	bridge_sound.play()
-	if dealerHand[0] > 21 or (playerHand[0] > dealerHand[0] and playerHand[0] < 22):
+	
+	if player_hand_val.text == "Blackjack!":
+		if dealer_hand_val.text == "Blackjack!":
+			global.money += global.bet[5]
+		else:
+			chip_pile_sound.play()
+			blackjackPay = int(ceil(global.bet[5] * 0.5))
+			global.money += global.bet[5] * 2 + blackjackPay
+			for i in range(4, -1, -1):
+				while blackjackPay > global.chipValues[i]:
+					global.chips += 1
+					var winnings = new_chip.instantiate()
+					winnings.num = global.chips
+					winnings.chipTexture = global.chipColors[i]
+					winnings.z_index = -2
+					winnings.position = Vector2(-679, -300)
+					winnings.visible = false
+					
+					chipsWon.append(winnings)
+					add_child(winnings)
+							
+					blackjackPay -= global.chipValues[i]
+			for chip in chipsWon:
+				chip.visible = true
+				chip.position = Vector2(-679, -300)
+				chip.y = 200
+				await get_tree().create_timer(.075).timeout
+			
+	elif dealerHand[0] > 21 or (playerHand[0] > dealerHand[0] and playerHand[0] < 22):
+		chip_pile_sound.play()
 		global.money += global.bet[5] * 2
+		for chip in chipsWon:
+			chip.visible = true
+			chip.position = Vector2(-679, -300)
+			chip.y = 200
+			await get_tree().create_timer(.075).timeout
+	elif dealerHand[0] == playerHand[0] and dealer_hand_val.text != "Blackjack!":
+		global.money += global.bet[5]
+	else:
+		chip_pile_sound.play()
+		for chip in chipsWon:
+			chip.queue_free()
+		chipsWon = []
+		for i in range(chips.size() - 1, -1, -1):
+			chips[i].losing = true
+			chips[i].x = -679
+			chips[i].y = -300
+			await get_tree().create_timer(.075).timeout
+	
+	await get_tree().create_timer(.5).timeout
+	bridge_sound.play()
 	for card in cards:
 		card.target_position = Vector2(775, 0)
 	await get_tree().create_timer(2).timeout
 	for card in cards:
 		card.queue_free()
+	for chip in chips:
+		chip.queue_free()
+	for chip in chipsWon:
+		chip.queue_free()
 	global.delt = [0,0]
 	global.end = [250, 250]
 	cards = []
+	chips = []
+	chipsWon = []
 	liveDeck = global.deck.keys()
 	playerHand = [0, false, 0]
 	dealerHand = [0, false, 1]
+	blackjackPay = 0
 	getBet()
 
 func dealerTurn():
@@ -115,7 +210,7 @@ func dealerTurn():
 	dealerDown.scale.x = -3
 	flip_sound.play()
 	await get_tree().create_timer(1.2).timeout
-	while dealerHand[0] < 17:
+	while dealerHand[0] < 17 and not (player_hand_val.text == "Blackjack!" and global.delt[1] > 1):
 		deal_card(dealerHand, false)
 		await get_tree().create_timer(1.2).timeout
 	end()
