@@ -4,9 +4,8 @@ extends Node
 @onready var bridge_sound: AudioStreamPlayer2D = $BridgeSound
 @onready var chip_pile_sound: AudioStreamPlayer2D = $ChipPileSound
 
-@onready var stand: Sprite2D = $"../Table/Stand"
-@onready var hit: Sprite2D = $"../Table/Hit"
-
+@onready var standButton: Sprite2D = $Stand
+@onready var hitButton: Sprite2D = $Hit
 
 @onready var player_hand_val: Label = $"../Table/playerHandVal"
 @onready var dealer_hand_val: Label = $"../Table/dealerHandVal"
@@ -31,16 +30,15 @@ var blackjackPay = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	standButton.connect("clicked", stand)
+	hitButton.connect("clicked", hit)
 	global.money = 100
 	getBet()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Reset"):
-		global.delt = [0,0]
-		global.end = [250, 250]
-		cards = []
-		get_tree().reload_current_scene()
+		global.money += 100
 	
 	money.text = "$" + str(global.money)
 	
@@ -65,15 +63,18 @@ func _process(delta: float) -> void:
 		else: 
 			dealer_hand_val.text = str(dealerHand[0])
 		
+		if isPlayerTurn:
+			standButton.visible = true
+			hitButton.visible = true
+		else:
+			standButton.visible = false
+			hitButton.visible = false
 		
 		if Input.is_action_just_pressed("Hit") and isPlayerTurn == true:
-			deal_card(playerHand, false)
+			hit()
 			
 		if (Input.is_action_just_pressed("Stand") or playerHand[0] == 21) and isPlayerTurn == true:
-			isPlayerTurn = false
-			if playerHand[0] == 21:
-				await get_tree().create_timer(1).timeout
-			dealerTurn()
+			stand()
 			
 		if playerHand[0] > 21 and isPlayerTurn == true:
 			isPlayerTurn = false
@@ -93,6 +94,15 @@ func getBet():
 	bettingUI = instance
 	add_child(instance)
 
+func stand():
+	isPlayerTurn = false
+	if playerHand[0] == 21:
+		await get_tree().create_timer(1).timeout
+	dealerTurn()
+	
+func hit():
+	deal_card(playerHand, false)
+
 func dealCards():
 	bettingUI.queue_free()
 	global.dealCards = false
@@ -107,8 +117,10 @@ func dealCards():
 	deal_card(dealerHand, true)
 	await get_tree().create_timer(.2).timeout
 	deal_card(playerHand, false)
+	
 	await get_tree().create_timer(.5).timeout
 	isPlayerTurn = true
+	
 
 func dealChips():
 	for i in range(5):
