@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c446oaxmr7uo"]
+[gd_scene load_steps=17 format=3 uid="uid://c446oaxmr7uo"]
 
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_2fe8g"]
 [ext_resource type="Script" uid="uid://je1qp2c0d0cf" path="res://Scripts/game_manager.gd" id="1_dgbpv"]
@@ -8,9 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://dgo7d5h4t08ee" path="res://Sprites/Chips/Stack.png" id="6_o4lkm"]
 [ext_resource type="FontFile" uid="uid://djmf3x3u2lnfm" path="res://Fonts/Minecraft.ttf" id="6_usajj"]
 [ext_resource type="Script" uid="uid://u36by3ri1sje" path="res://Scripts/stand_hit.gd" id="6_x0duj"]
+[ext_resource type="Texture2D" uid="uid://dbrlnqy85mmsl" path="res://Sprites/Chips/Highlight.png" id="7_llvxf"]
 [ext_resource type="AudioStream" uid="uid://bxlbmcvnx0g6k" path="res://Sounds/SFX/bridge.mp3" id="8_j277j"]
+[ext_resource type="Script" uid="uid://mp3m3i8ttbx6" path="res://Scripts/chipHover.gd" id="8_oi710"]
 [ext_resource type="Texture2D" uid="uid://dv0l6wryxbu52" path="res://Sprites/Chips/stand.png" id="9_4ntqo"]
 [ext_resource type="Texture2D" uid="uid://b610mdgwmf4xx" path="res://Sprites/Chips/Hit.png" id="10_x0duj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_somge"]
+radius = 15.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
 atlas = ExtResource("3_u5355")
@@ -50,12 +55,36 @@ scale = Vector2(3, 3)
 texture = ExtResource("9_4ntqo")
 script = ExtResource("6_x0duj")
 
+[node name="Highlight" type="Sprite2D" parent="Game Manager/Stand"]
+modulate = Color(1, 1, 1, 0.00392157)
+texture = ExtResource("7_llvxf")
+
+[node name="Area2D" type="Area2D" parent="Game Manager/Stand/Highlight"]
+position = Vector2(-25, 20)
+script = ExtResource("8_oi710")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game Manager/Stand/Highlight/Area2D"]
+position = Vector2(25, -20)
+shape = SubResource("CircleShape2D_somge")
+
 [node name="Hit" type="Sprite2D" parent="Game Manager"]
 visible = false
 position = Vector2(575, 300)
 scale = Vector2(3, 3)
 texture = ExtResource("10_x0duj")
 script = ExtResource("6_x0duj")
+
+[node name="Highlight" type="Sprite2D" parent="Game Manager/Hit"]
+modulate = Color(1, 1, 1, 0.00392157)
+texture = ExtResource("7_llvxf")
+
+[node name="Area2D" type="Area2D" parent="Game Manager/Hit/Highlight"]
+position = Vector2(-25, 20)
+script = ExtResource("8_oi710")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game Manager/Hit/Highlight/Area2D"]
+position = Vector2(25, -20)
+shape = SubResource("CircleShape2D_somge")
 
 [node name="Table" type="Node" parent="."]
 

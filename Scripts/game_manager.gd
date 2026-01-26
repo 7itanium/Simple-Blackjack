@@ -34,17 +34,18 @@ func _ready() -> void:
 	hitButton.connect("clicked", hit)
 	global.money = 100
 	getBet()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Reset"):
-		global.money += 100
+		global.money += 1000
 	
 	money.text = "$" + str(global.money)
 	
 	if isBetting:
 		dealer_hand_val.text = "Dealer must draw to 16 and stand on 17"
-		player_hand_val.text = str(global.bet[5])
+		player_hand_val.text = str(global.bet[6])
 		
 		if global.dealCards:
 			dealCards()
@@ -85,7 +86,7 @@ func _process(delta: float) -> void:
 			choose_card(dealerDown, dealerHand)
 
 func getBet():
-	global.bet = [0, 0, 0, 0, 0, 0]
+	global.bet = [0, 0, 0, 0, 0, 0, 0]
 	global.chips = 0
 	isBetting = true
 	var instance = bettingScene.instantiate()
@@ -93,6 +94,7 @@ func getBet():
 	instance.position = Vector2(0,250)
 	bettingUI = instance
 	add_child(instance)
+	bettingUI.checkPurple()
 
 func stand():
 	isPlayerTurn = false
@@ -123,7 +125,7 @@ func dealCards():
 	
 
 func dealChips():
-	for i in range(5):
+	for i in range(6):
 		for j in range(global.bet[i]):
 			global.chips += 1
 			var instance = new_chip.instantiate()
@@ -148,13 +150,13 @@ func end():
 	
 	if player_hand_val.text == "Blackjack!":
 		if dealer_hand_val.text == "Blackjack!":
-			global.money += global.bet[5]
+			global.money += global.bet[6]
 		else:
 			chip_pile_sound.play()
-			blackjackPay = int(ceil(global.bet[5] * 0.5))
-			global.money += global.bet[5] * 2 + blackjackPay
-			for i in range(4, -1, -1):
-				while blackjackPay > global.chipValues[i]:
+			blackjackPay = int(ceil(global.bet[6] * 0.5))
+			global.money += global.bet[6] * 2 + blackjackPay
+			for i in range(5, -1, -1):
+				while blackjackPay >= global.chipValues[i]:
 					global.chips += 1
 					var winnings = new_chip.instantiate()
 					winnings.num = global.chips
@@ -175,14 +177,14 @@ func end():
 			
 	elif dealerHand[0] > 21 or (playerHand[0] > dealerHand[0] and playerHand[0] < 22):
 		chip_pile_sound.play()
-		global.money += global.bet[5] * 2
+		global.money += global.bet[6] * 2
 		for chip in chipsWon:
 			chip.visible = true
 			chip.position = Vector2(-679, -300)
 			chip.y = 200
 			await get_tree().create_timer(.075).timeout
 	elif dealerHand[0] == playerHand[0] and dealer_hand_val.text != "Blackjack!":
-		global.money += global.bet[5]
+		global.money += global.bet[6]
 	else:
 		chip_pile_sound.play()
 		for chip in chipsWon:

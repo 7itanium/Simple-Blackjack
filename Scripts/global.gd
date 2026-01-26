@@ -60,7 +60,7 @@ var end = [250, 250]
 const STEP = 50
 var dealCards = false
 
-var bet = [0, 0, 0, 0, 0, 0]
+var bet = [0, 0, 0, 0, 0, 0, 0]
 
 var money = 100
 
@@ -71,7 +71,8 @@ var chipColors = [
 	"res://Sprites/Chips/Red.png",
 	"res://Sprites/Chips/Green.png",
 	"res://Sprites/Chips/Blue.png",
-	"res://Sprites/Chips/Black.png"
+	"res://Sprites/Chips/Black.png",
+	"res://Sprites/Chips/Purple.png"
 ]
 
-var chipValues = [1, 5, 10, 25, 100]
+var chipValues = [1, 5, 10, 25, 100, 1000]

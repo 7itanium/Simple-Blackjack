@@ -22,7 +22,7 @@ func _input(event):
 					global.bet[color] = 10
 				else:
 					global.money += display.values[color] * direction * -1
-					global.bet[5] = (global.bet[0] * display.values[0]) + (global.bet[1] * display.values[1]) + (global.bet[2] * display.values[2]) + (global.bet[3] * display.values[3]) + (global.bet[4] * display.values[4])
+					global.bet[6] = (global.bet[0] * display.values[0]) + (global.bet[1] * display.values[1]) + (global.bet[2] * display.values[2]) + (global.bet[3] * display.values[3]) + (global.bet[4] * display.values[4]) + (global.bet[5] * display.values[5])
 					
 					if direction == 1:
 						if global.bet[color] == 1:
@@ -39,5 +39,10 @@ func _input(event):
 						display.displayChips[color][global.bet[color] - 1].visible = true
 					else:
 						display.displayChips[color][global.bet[color]].visible = false
+						
+					display.checkBal()
+					position.y += 1
+					await get_tree().create_timer(.1).timeout
+					position.y -= 1
 				
 				display.checkBal()
