@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Simple Blackjack"
-run/main_scene="uid://c446oaxmr7uo"
+run/main_scene="uid://ceyysqriapxwb"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 global="*res://Scripts/global.gd"
+theme="*res://Scenes/theme_music.tscn"
 
 [display]
 

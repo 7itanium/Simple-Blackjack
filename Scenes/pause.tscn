@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsell4144oat7"]
+
+[ext_resource type="Script" uid="uid://bdnwwpy2fmxyl" path="res://Scripts/pause.gd" id="1_54e2h"]
+[ext_resource type="Texture2D" uid="uid://bdu0ttg2aeyhd" path="res://Sprites/Buttons/Quit.png" id="1_nsogc"]
+[ext_resource type="Texture2D" uid="uid://cfiet2gt54wgv" path="res://Sprites/Buttons/QuitHover.png" id="2_0pswh"]
+[ext_resource type="Texture2D" uid="uid://brvqv1khsuk4o" path="res://Sprites/Square.png" id="2_vfiib"]
+[ext_resource type="Texture2D" uid="uid://vef7jh0qdcup" path="res://Sprites/Buttons/Settings.png" id="3_54e2h"]
+[ext_resource type="Texture2D" uid="uid://c2pa6rpunxyos" path="res://Sprites/Buttons/SettingsHover.png" id="4_vfiib"]
+[ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="7_0pswh"]
+[ext_resource type="Texture2D" uid="uid://b7vcidg3k7t30" path="res://Sprites/Buttons/Return.png" id="7_vfiib"]
+[ext_resource type="Texture2D" uid="uid://i4w82wwp26wo" path="res://Sprites/Buttons/ReturnHover.png" id="8_qoltt"]
+[ext_resource type="Texture2D" uid="uid://d20ofvnpcrr41" path="res://Sprites/Buttons/Pause.png" id="10_2vhw8"]
+[ext_resource type="Texture2D" uid="uid://depyae253tqko" path="res://Sprites/Buttons/PauseHover.png" id="11_r7l8j"]
+
+[node name="Pause" type="Node2D"]
+z_index = 100
+script = ExtResource("1_54e2h")
+
+[node name="Black" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.376471)
+position = Vector2(3.49998, 30.0001)
+scale = Vector2(68.6333, 43.5333)
+texture = ExtResource("2_vfiib")
+
+[node name="Button Manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Quit" type="TextureButton" parent="Button Manager"]
+layout_mode = 0
+offset_left = -174.0
+offset_top = -115.0
+offset_right = -124.0
+offset_bottom = -25.0
+rotation = -0.279253
+scale = Vector2(6, 6)
+pivot_offset = Vector2(25, 35)
+texture_normal = ExtResource("1_nsogc")
+texture_hover = ExtResource("2_0pswh")
+
+[node name="Settings" type="TextureButton" parent="Button Manager"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.25
+anchor_top = -1.75
+anchor_right = 2.5
+anchor_bottom = 3.5
+offset_left = 25.0
+offset_top = -65.0
+offset_right = -75.0
+offset_bottom = -185.0
+scale = Vector2(6, 6)
+pivot_offset = Vector2(25, 35)
+texture_normal = ExtResource("3_54e2h")
+texture_hover = ExtResource("4_vfiib")
+
+[node name="Return" type="TextureButton" parent="Button Manager"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = -112.0
+offset_right = 177.0
+offset_bottom = -22.0
+rotation = 0.279253
+scale = Vector2(6, 6)
+pivot_offset = Vector2(25, 35)
+texture_normal = ExtResource("7_vfiib")
+texture_hover = ExtResource("8_qoltt")
+
+[node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0pswh")
+volume_db = -5.0
+
+[node name="Pause" type="TextureButton" parent="."]
+z_index = -1
+offset_left = 805.0
+offset_top = -475.0
+offset_right = 835.0
+offset_bottom = -445.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("10_2vhw8")
+texture_hover = ExtResource("11_r7l8j")
+
+[connection signal="mouse_entered" from="Button Manager/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="Button Manager/Quit" to="." method="_on_quit_mouse_exited"]
+[connection signal="pressed" from="Button Manager/Quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="Button Manager/Return" to="." method="_on_return_mouse_entered"]
+[connection signal="mouse_exited" from="Button Manager/Return" to="." method="_on_return_mouse_exited"]
+[connection signal="pressed" from="Button Manager/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]

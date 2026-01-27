@@ -1,5 +1,6 @@
 extends Node
 
+
 var deck = { 
 	"AS": [1, "res://Sprites/Cards/Spades/ace.png"],
 	"AD": [1, "res://Sprites/Cards/Diamonds/ace.png"],
@@ -76,3 +77,5 @@ var chipColors = [
 ]
 
 var chipValues = [1, 5, 10, 25, 100, 1000]
+
+var paused = false

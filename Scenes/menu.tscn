@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://ceyysqriapxwb"]
+
+[ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_cayip"]
+[ext_resource type="Script" uid="uid://cu606twan5f4d" path="res://Scripts/menu.gd" id="1_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://m7puj5cxuq1q" path="res://Sprites/Deck.png" id="2_158mb"]
+[ext_resource type="Texture2D" uid="uid://dgo7d5h4t08ee" path="res://Sprites/Chips/Stack.png" id="3_cayip"]
+[ext_resource type="Texture2D" uid="uid://cccitrrullvgk" path="res://Sprites/Buttons/Start.png" id="5_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://cfiet2gt54wgv" path="res://Sprites/Buttons/QuitHover.png" id="6_7qvly"]
+[ext_resource type="Texture2D" uid="uid://vef7jh0qdcup" path="res://Sprites/Buttons/Settings.png" id="6_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://bdu0ttg2aeyhd" path="res://Sprites/Buttons/Quit.png" id="7_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://c72fsrua8y6fd" path="res://Sprites/Buttons/StartHover.png" id="8_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://c2pa6rpunxyos" path="res://Sprites/Buttons/SettingsHover.png" id="8_rfqti"]
+[ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="11_rfqti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
+atlas = ExtResource("2_158mb")
+region = Rect2(0, 0, 54, 74)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jsrd8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mi0s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_wwsa2")
+
+[node name="Back Ground" type="Node" parent="."]
+
+[node name="Felt" type="Sprite2D" parent="Back Ground"]
+z_index = -20
+texture = ExtResource("1_cayip")
+metadata/_edit_lock_ = true
+
+[node name="Deck" type="AnimatedSprite2D" parent="Back Ground"]
+visible = false
+z_index = 50
+position = Vector2(775, 0)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_jsrd8")
+metadata/_edit_lock_ = true
+
+[node name="DealerChips" type="Sprite2D" parent="Back Ground"]
+visible = false
+z_index = -1
+position = Vector2(-679, -334)
+scale = Vector2(3, 3)
+texture = ExtResource("3_cayip")
+
+[node name="Player1 Camera" type="Camera2D" parent="Back Ground"]
+metadata/_edit_lock_ = true
+
+[node name="Button Manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Quit" type="TextureButton" parent="Button Manager"]
+layout_mode = 0
+offset_left = -174.0
+offset_top = 20.0
+offset_right = -124.0
+offset_bottom = 110.0
+rotation = -0.279253
+scale = Vector2(6, 6)
+pivot_offset = Vector2(25, 35)
+texture_normal = ExtResource("7_q3rjx")
+texture_hover = ExtResource("6_7qvly")
+
+[node name="Settings" type="TextureButton" parent="Button Manager"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.25
+anchor_top = -1.75
+anchor_right = 2.5
+anchor_bottom = 3.5
+offset_left = 25.0
+offset_top = 70.0
+offset_right = -75.0
+offset_bottom = -50.0
+scale = Vector2(6, 6)
+pivot_offset = Vector2(25, 35)
+texture_normal = ExtResource("6_wbdvm")
+texture_hover = ExtResource("8_rfqti")
+
+[node name="Start" type="TextureButton" parent="Button Manager"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 23.0
+offset_right = 177.0
+offset_bottom = 113.0
+rotation = 0.279253
+scale = Vector2(6, 6)
+pivot_offset = Vector2(25, 35)
+texture_normal = ExtResource("5_wwsa2")
+texture_hover = ExtResource("8_q3rjx")
+
+[node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_rfqti")
+volume_db = -5.0
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="mouse_entered" from="Button Manager/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="Button Manager/Quit" to="." method="_on_quit_mouse_exited"]
+[connection signal="pressed" from="Button Manager/Quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="Button Manager/Settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="mouse_exited" from="Button Manager/Settings" to="." method="_on_settings_mouse_exited"]
+[connection signal="pressed" from="Button Manager/Settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="Button Manager/Start" to="." method="_on_start_mouse_entered"]
+[connection signal="mouse_exited" from="Button Manager/Start" to="." method="_on_start_mouse_exited"]
+[connection signal="pressed" from="Button Manager/Start" to="." method="_on_start_pressed"]

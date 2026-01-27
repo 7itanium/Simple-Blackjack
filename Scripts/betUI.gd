@@ -9,6 +9,8 @@ extends Node2D
 @onready var blackChips = [$"Black Stack/Black", $"Black Stack/Black2", $"Black Stack/Black3", $"Black Stack/Black4", $"Black Stack/Black5", $"Black Stack/Black6", $"Black Stack/Black7", $"Black Stack/Black8", $"Black Stack/Black9", $"Black Stack/Black10"]
 @onready var purpleChips = [$"Purple Stack/Purple", $"Purple Stack/Purple2", $"Purple Stack/Purple3", $"Purple Stack/Purple4", $"Purple Stack/Purple5", $"Purple Stack/Purple6", $"Purple Stack/Purple7", $"Purple Stack/Purple8", $"Purple Stack/Purple9", $"Purple Stack/Purple10"]
 
+@onready var highlights
+
 @onready var displayChips = [whiteChips, redChips, greenChips, blueChips, blackChips, purpleChips]
 
 @onready var check: Sprite2D = $Check
@@ -29,6 +31,14 @@ func _ready() -> void:
 			val += 1
 	checkBal()
 
+func reset():
+	for stack in displayChips:
+		for chip in stack:
+			chip.visible = false
+	
+	checkPurple()
+	checkBal()
+
 func checkPurple():
 	if global.money >= 1000:
 		check.position.x = 235
@@ -39,6 +49,7 @@ func checkPurple():
 		chips[10].position.x = 2000
 		chips[11].position.x = 2000
 
+	
 func checkBal():
 	if global.bet[6] == 0:
 		check.modulate.a = 0.5
