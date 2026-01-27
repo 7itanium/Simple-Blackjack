@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://depyae253tqko" path="res://Sprites/Buttons/PauseHover.png" id="11_r7l8j"]
 
 [node name="Pause" type="Node2D"]
+process_mode = 3
 z_index = 100
 script = ExtResource("1_54e2h")
 
@@ -29,6 +30,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Quit" type="TextureButton" parent="Button Manager"]
+process_mode = 3
 layout_mode = 0
 offset_left = -174.0
 offset_top = -115.0
@@ -71,6 +73,7 @@ texture_hover = ExtResource("8_qoltt")
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_0pswh")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="Pause" type="TextureButton" parent="."]
 z_index = -1
@@ -85,6 +88,9 @@ texture_hover = ExtResource("11_r7l8j")
 [connection signal="mouse_entered" from="Button Manager/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="mouse_exited" from="Button Manager/Quit" to="." method="_on_quit_mouse_exited"]
 [connection signal="pressed" from="Button Manager/Quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="Button Manager/Settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="mouse_exited" from="Button Manager/Settings" to="." method="_on_settings_mouse_exited"]
+[connection signal="pressed" from="Button Manager/Settings" to="." method="_on_settings_pressed"]
 [connection signal="mouse_entered" from="Button Manager/Return" to="." method="_on_return_mouse_entered"]
 [connection signal="mouse_exited" from="Button Manager/Return" to="." method="_on_return_mouse_exited"]
 [connection signal="pressed" from="Button Manager/Return" to="." method="_on_return_pressed"]

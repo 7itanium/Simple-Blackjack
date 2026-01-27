@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ceyysqriapxwb"]
+[gd_scene load_steps=15 format=3 uid="uid://ceyysqriapxwb"]
 
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_cayip"]
 [ext_resource type="Script" uid="uid://cu606twan5f4d" path="res://Scripts/menu.gd" id="1_wwsa2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c72fsrua8y6fd" path="res://Sprites/Buttons/StartHover.png" id="8_q3rjx"]
 [ext_resource type="Texture2D" uid="uid://c2pa6rpunxyos" path="res://Sprites/Buttons/SettingsHover.png" id="8_rfqti"]
 [ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="11_rfqti"]
+[ext_resource type="Texture2D" uid="uid://ckblrq6ldkq6m" path="res://Sprites/Title.png" id="12_g8i7c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
 atlas = ExtResource("2_158mb")
@@ -104,6 +105,12 @@ texture_hover = ExtResource("8_q3rjx")
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_rfqti")
 volume_db = -5.0
+bus = &"SFX"
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(0, -308)
+scale = Vector2(2, 2)
+texture = ExtResource("12_g8i7c")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

@@ -79,3 +79,7 @@ var chipColors = [
 var chipValues = [1, 5, 10, 25, 100, 1000]
 
 var paused = false
+var musicVolume = 1.5
+var sfxVolume = 1.5
+
+var pauseButtons = false

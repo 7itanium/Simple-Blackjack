@@ -47,13 +47,16 @@ script = ExtResource("1_dgbpv")
 
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="Game Manager"]
 stream = ExtResource("5_bmd77")
+bus = &"SFX"
 
 [node name="BridgeSound" type="AudioStreamPlayer2D" parent="Game Manager"]
 stream = ExtResource("8_j277j")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="ChipPileSound" type="AudioStreamPlayer2D" parent="Game Manager"]
 stream = ExtResource("4_4ntqo")
+bus = &"SFX"
 
 [node name="Stand" type="Sprite2D" parent="Game Manager"]
 visible = false

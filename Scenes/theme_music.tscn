@@ -3,6 +3,8 @@
 [ext_resource type="AudioStream" uid="uid://b1iqsa8njxdkp" path="res://Sounds/Music/theme.ogg" id="1_mtmrb"]
 
 [node name="Theme" type="AudioStreamPlayer2D"]
+process_mode = 3
 stream = ExtResource("1_mtmrb")
-volume_db = -17.0
+volume_db = -10.0
 autoplay = true
+bus = &"Music"

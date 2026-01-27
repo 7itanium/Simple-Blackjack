@@ -636,12 +636,16 @@ shape = SubResource("CircleShape2D_olame")
 
 [node name="FeltAdd" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_yqtwm")
+bus = &"SFX"
 
 [node name="FeltRemove" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_laeix")
+bus = &"SFX"
 
 [node name="ChipAdd" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_733qt")
+bus = &"SFX"
 
 [node name="ChipRemove" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_b8jq1")
+bus = &"SFX"

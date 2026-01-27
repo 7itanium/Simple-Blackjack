@@ -18,7 +18,6 @@ extends Node
 var new_card = preload("res://Scenes/card.tscn")
 var new_chip = preload("res://Scenes/chip.tscn")
 var bettingScene = preload("res://Scenes/betting.tscn")
-var pauseScene = preload("res://Scenes/pause.tscn")
 var liveDeck = global.deck.keys()
 var playerHand = [0, false, 0]
 var dealerHand = [0, false, 1]
