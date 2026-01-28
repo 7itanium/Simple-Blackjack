@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chn5sy4ciae1g"
-path="res://.godot/imported/WhiteSlider.png-f79814a1405169a30a43b6fe8c8cf035.ctex"
+uid="uid://cjno6o23tgfek"
+path="res://.godot/imported/WhiteDisabled.png-33c2936b2b24d0a245b1b090f5d21d9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/WhiteSlider.png"
-dest_files=["res://.godot/imported/WhiteSlider.png-f79814a1405169a30a43b6fe8c8cf035.ctex"]
+source_file="res://Sprites/Buttons/WhiteDisabled.png"
+dest_files=["res://.godot/imported/WhiteDisabled.png-33c2936b2b24d0a245b1b090f5d21d9a.ctex"]
 
 [params]
 

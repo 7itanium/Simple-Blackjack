@@ -83,5 +83,3 @@ var sfxVolume = 1.5
 
 var pauseButtons = false
 var difficulty = 0
-
-var inGame = false

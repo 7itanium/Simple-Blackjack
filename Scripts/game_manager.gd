@@ -32,7 +32,7 @@ var blackjackPay = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	global.inGame = true
+	#global.inGame = true
 	global.delt = [0,0]
 	global.end = [250, 250]
 	bridge_sound.play()

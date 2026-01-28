@@ -35,6 +35,7 @@ func _on_settings_pressed() -> void:
 	optionsRefrence = instance
 	add_child(instance)
 	optionsRefrence.pause_back.position = Vector2(-864, 353)
+	optionsRefrence.difficulty_button.disabled = true
 	flipSound.play()
 
 func _on_return_pressed() -> void:

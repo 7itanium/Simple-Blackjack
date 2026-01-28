@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cibmj01wvcdwx"]
+[gd_scene load_steps=22 format=3 uid="uid://cibmj01wvcdwx"]
 
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_5a0sy"]
 [ext_resource type="Script" uid="uid://ertmrnqasay1" path="res://Scripts/options.gd" id="1_hvj8k"]
@@ -14,6 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://sfabgdx8hvqu" path="res://Sprites/Buttons/BlackSlider.png" id="10_srb65"]
 [ext_resource type="Texture2D" uid="uid://b5sxphu0u33yn" path="res://Sprites/Buttons/GreenHover.png" id="11_033dp"]
 [ext_resource type="FontFile" uid="uid://c07ulqlky4b6c" path="res://Fonts/VCR.ttf" id="11_srb65"]
+[ext_resource type="Texture2D" uid="uid://chexftfftj077" path="res://Sprites/Buttons/GreenDisabled.png" id="12_o88n5"]
+[ext_resource type="Texture2D" uid="uid://bokhi03q2rjml" path="res://Sprites/Buttons/White.png" id="14_ywsft"]
+[ext_resource type="Texture2D" uid="uid://byfvrqhpl2be" path="res://Sprites/Buttons/WhiteHover.png" id="15_mgjjt"]
+[ext_resource type="Texture2D" uid="uid://cjno6o23tgfek" path="res://Sprites/Buttons/WhiteDisabled.png" id="16_pqc76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
 atlas = ExtResource("2_g5vgl")
@@ -48,6 +52,7 @@ texture = ExtResource("1_5a0sy")
 metadata/_edit_lock_ = true
 
 [node name="Deck" type="AnimatedSprite2D" parent="Back Ground"]
+visible = false
 z_index = 102
 position = Vector2(775, 0)
 scale = Vector2(3, 3)
@@ -55,6 +60,7 @@ sprite_frames = SubResource("SpriteFrames_o88n5")
 metadata/_edit_lock_ = true
 
 [node name="DealerChips" type="Sprite2D" parent="Back Ground"]
+visible = false
 z_index = 102
 position = Vector2(-679, -334)
 scale = Vector2(3, 3)
@@ -109,6 +115,7 @@ offset_bottom = 89.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("9_qcivb")
 texture_hover = ExtResource("11_033dp")
+texture_disabled = ExtResource("12_o88n5")
 
 [node name="Difficulty Label" type="Label" parent="Buttons/Difficulty Button"]
 layout_mode = 0
@@ -119,7 +126,32 @@ offset_bottom = 64.0
 scale = Vector2(0.3, 0.3)
 theme_override_fonts/font = ExtResource("11_srb65")
 theme_override_font_sizes/font_size = 64
-text = "Easy"
+text = "Normal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits Button" type="TextureButton" parent="Buttons"]
+offset_left = -220.0
+offset_top = 225.0
+offset_right = -73.0
+offset_bottom = 255.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("14_ywsft")
+texture_hover = ExtResource("15_mgjjt")
+texture_disabled = ExtResource("16_pqc76")
+
+[node name="Credits Label" type="Label" parent="Buttons/Credits Button"]
+modulate = Color(0.79, 0.79, 0.79, 1)
+layout_mode = 0
+offset_left = 27.6667
+offset_top = 6.0
+offset_right = 333.667
+offset_bottom = 64.0
+scale = Vector2(0.3, 0.3)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_srb65")
+theme_override_font_sizes/font_size = 64
+text = "Credits"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -204,7 +236,10 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PauseBack" to="." method="_on_pause_back_pressed"]
-[connection signal="pressed" from="Buttons/Difficulty Button" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Buttons/Difficulty Button" to="." method="_on_difficulty_button_pressed"]
+[connection signal="mouse_entered" from="Buttons/Credits Button" to="." method="_on_credits_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/Credits Button" to="." method="_on_credits_button_mouse_exited"]
+[connection signal="pressed" from="Buttons/Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="value_changed" from="Sliders/Music" to="." method="_on_music_value_changed"]
 [connection signal="drag_ended" from="Sliders/SFX" to="." method="_on_sfx_drag_ended"]
 [connection signal="value_changed" from="Sliders/SFX" to="." method="_on_sfx_value_changed"]

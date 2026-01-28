@@ -7,6 +7,8 @@ extends Node2D
 @onready var pause_back: TextureButton = $PauseBack
 @onready var difficulty_button: TextureButton = $"Buttons/Difficulty Button"
 @onready var difficulty_label: Label = $"Buttons/Difficulty Button/Difficulty Label"
+@onready var credits_button: TextureButton = $"Buttons/Credits Button"
+@onready var credits_label: Label = $"Buttons/Credits Button/Credits Label"
 const GREEN = preload("res://Sprites/Buttons/Green.png")
 const GREEN_HOVER = preload("res://Sprites/Buttons/GreenHover.png")
 const GREEN_DISABLED = preload("res://Sprites/Buttons/GreenDisabled.png")
@@ -27,7 +29,7 @@ func _ready() -> void:
 	difficulty_button.texture_normal = difficulty[global.difficulty][3]
 	difficulty_button.texture_hover = difficulty[global.difficulty][4]
 	difficulty_button.texture_disabled = difficulty[global.difficulty][5]
-	difficulty_button.disabled = global.inGame
+	#difficulty_button.disabled = global.inGame
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -58,10 +60,9 @@ func _on_sfx_value_changed(value: float) -> void:
 	
 func _on_sfx_drag_ended(value_changed: bool) -> void:
 	pile.play()
-	
-	
 
-func _on_texture_button_pressed() -> void:
+
+func _on_difficulty_button_pressed() -> void:
 	global.difficulty += difficulty[global.difficulty][2]
 	difficulty_label.text = difficulty[global.difficulty][0]
 	global.money = difficulty[global.difficulty][1]
@@ -76,3 +77,19 @@ func _on_texture_button_pressed() -> void:
 	difficulty_button.position.y += 3
 	await get_tree().create_timer(.1).timeout
 	difficulty_button.position.y -= 3
+
+
+
+func _on_credits_button_pressed() -> void:
+	chip.play()
+	credits_button.position.y += 3
+	await get_tree().create_timer(.1).timeout
+	credits_button.position.y -= 3
+
+
+func _on_credits_button_mouse_entered() -> void:
+	credits_label.modulate.a = .67
+
+
+func _on_credits_button_mouse_exited() -> void:
+	credits_label.modulate.a = 1
