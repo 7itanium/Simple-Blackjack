@@ -62,7 +62,7 @@ var dealCards = false
 
 var bet = [0, 0, 0, 0, 0, 0, 0]
 
-var money = 10000
+var money = 100
 
 var chips = 0
 
