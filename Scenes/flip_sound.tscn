@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj14l0n6ryxcc"]
+
+[ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="1_7pwcb"]
+
+[node name="flip_sound" type="AudioStreamPlayer2D"]
+process_mode = 3
+stream = ExtResource("1_7pwcb")
+bus = &"SFX"

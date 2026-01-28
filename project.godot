@@ -19,6 +19,9 @@ config/icon="res://icon.svg"
 
 global="*res://Scripts/global.gd"
 theme="*res://Scenes/theme_music.tscn"
+save="*res://Scripts/save.gd"
+chipSound="*res://Scenes/chip_sound.tscn"
+flipSound="*res://Scenes/flip_sound.tscn"
 
 [display]
 

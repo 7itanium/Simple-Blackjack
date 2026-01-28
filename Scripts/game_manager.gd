@@ -32,12 +32,12 @@ var blackjackPay = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global.inGame = true
 	global.delt = [0,0]
 	global.end = [250, 250]
 	bridge_sound.play()
 	standButton.connect("clicked", stand)
 	hitButton.connect("clicked", hit)
-	global.money = 100
 	getBet()
 	
 
@@ -51,8 +51,8 @@ func _process(delta: float) -> void:
 	money.text = "$" + str(global.money)
 	
 	if isBetting:
-		dealer_hand_val.text = "Dealer must draw to 16 and stand on 17"
-		player_hand_val.text = str(global.bet[6])
+		dealer_hand_val.text = "Dealer must draw to 16\n and stand on 17"
+		player_hand_val.text = "$" + str(global.bet[6])
 		
 		if global.dealCards:
 			dealCards()

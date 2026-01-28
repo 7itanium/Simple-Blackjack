@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cibmj01wvcdwx"]
+[gd_scene load_steps=18 format=3 uid="uid://cibmj01wvcdwx"]
 
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_5a0sy"]
 [ext_resource type="Script" uid="uid://ertmrnqasay1" path="res://Scripts/options.gd" id="1_hvj8k"]
@@ -6,11 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://dgo7d5h4t08ee" path="res://Sprites/Chips/Stack.png" id="3_srb65"]
 [ext_resource type="Texture2D" uid="uid://cnrgmm0d8buo0" path="res://Sprites/Buttons/Back.png" id="5_663nc"]
 [ext_resource type="Texture2D" uid="uid://btum066bq5w8p" path="res://Sprites/Buttons/BackHover.png" id="6_hvj8k"]
+[ext_resource type="AudioStream" uid="uid://7pdahvvw1j1j" path="res://Sounds/SFX/chip_add.mp3" id="7_aag3x"]
 [ext_resource type="AudioStream" uid="uid://b6cjku77mqcqs" path="res://Sounds/SFX/chip_pile.mp3" id="8_38txh"]
 [ext_resource type="Texture2D" uid="uid://dpbsbdnhrd2jx" path="res://Sprites/Chips/White.png" id="9_g5vgl"]
+[ext_resource type="Texture2D" uid="uid://b0q3c1jm35bla" path="res://Sprites/Buttons/Green.png" id="9_qcivb"]
 [ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="10_g5vgl"]
 [ext_resource type="Texture2D" uid="uid://sfabgdx8hvqu" path="res://Sprites/Buttons/BlackSlider.png" id="10_srb65"]
-[ext_resource type="FontFile" uid="uid://djmf3x3u2lnfm" path="res://Fonts/Minecraft.ttf" id="11_srb65"]
+[ext_resource type="Texture2D" uid="uid://b5sxphu0u33yn" path="res://Sprites/Buttons/GreenHover.png" id="11_033dp"]
+[ext_resource type="FontFile" uid="uid://c07ulqlky4b6c" path="res://Fonts/VCR.ttf" id="11_srb65"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mi0s"]
 atlas = ExtResource("2_g5vgl")
@@ -69,6 +72,10 @@ bus = &"SFX"
 stream = ExtResource("8_38txh")
 bus = &"SFX"
 
+[node name="ChipSound" type="AudioStreamPlayer2D" parent="Back Ground"]
+stream = ExtResource("7_aag3x")
+bus = &"SFX"
+
 [node name="Back" type="TextureButton" parent="."]
 offset_left = -864.0
 offset_top = 353.0
@@ -87,9 +94,34 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("5_663nc")
 texture_hover = ExtResource("6_hvj8k")
 
-[node name="Chip" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_38txh")
-bus = &"SFX"
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Difficulty Button" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = -220.5
+offset_top = 59.0
+offset_right = -73.5
+offset_bottom = 89.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("9_qcivb")
+texture_hover = ExtResource("11_033dp")
+
+[node name="Difficulty Label" type="Label" parent="Buttons/Difficulty Button"]
+layout_mode = 0
+offset_left = 27.6667
+offset_top = 6.0
+offset_right = 333.667
+offset_bottom = 64.0
+scale = Vector2(0.3, 0.3)
+theme_override_fonts/font = ExtResource("11_srb65")
+theme_override_font_sizes/font_size = 64
+text = "Easy"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sliders" type="Control" parent="."]
 z_index = 110
@@ -148,7 +180,7 @@ offset_top = -229.0
 offset_right = 603.0
 offset_bottom = -165.0
 theme_override_fonts/font = ExtResource("11_srb65")
-theme_override_font_sizes/font_size = 63
+theme_override_font_sizes/font_size = 64
 text = "SFX"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -165,13 +197,14 @@ offset_top = -440.0
 offset_right = 603.0
 offset_bottom = -376.0
 theme_override_fonts/font = ExtResource("11_srb65")
-theme_override_font_sizes/font_size = 63
+theme_override_font_sizes/font_size = 64
 text = "Music"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PauseBack" to="." method="_on_pause_back_pressed"]
+[connection signal="pressed" from="Buttons/Difficulty Button" to="." method="_on_texture_button_pressed"]
 [connection signal="value_changed" from="Sliders/Music" to="." method="_on_music_value_changed"]
 [connection signal="drag_ended" from="Sliders/SFX" to="." method="_on_sfx_drag_ended"]
 [connection signal="value_changed" from="Sliders/SFX" to="." method="_on_sfx_value_changed"]

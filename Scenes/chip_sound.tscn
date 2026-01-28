@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpaymjyol41iy"]
+
+[ext_resource type="AudioStream" uid="uid://7pdahvvw1j1j" path="res://Sounds/SFX/chip_add.mp3" id="1_2w7c4"]
+
+[node name="ChipSound" type="AudioStreamPlayer2D"]
+process_mode = 3
+stream = ExtResource("1_2w7c4")
+bus = &"SFX"

@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 
 func _on_quit_pressed() -> void:
 	game_manager.unpause()
+	flipSound.play()
 	theme.seek(0)
 	get_tree().change_scene_to_file("res://Scenes/menu.tscn") 
 
@@ -34,7 +35,7 @@ func _on_settings_pressed() -> void:
 	optionsRefrence = instance
 	add_child(instance)
 	optionsRefrence.pause_back.position = Vector2(-864, 353)
-	
+	flipSound.play()
 
 func _on_return_pressed() -> void:
 	game_manager.unpause()

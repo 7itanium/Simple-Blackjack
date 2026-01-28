@@ -1,6 +1,5 @@
 extends Node
 
-
 var deck = { 
 	"AS": [1, "res://Sprites/Cards/Spades/ace.png"],
 	"AD": [1, "res://Sprites/Cards/Diamonds/ace.png"],
@@ -63,7 +62,7 @@ var dealCards = false
 
 var bet = [0, 0, 0, 0, 0, 0, 0]
 
-var money = 100
+var money = 10000
 
 var chips = 0
 
@@ -83,3 +82,6 @@ var musicVolume = 1.5
 var sfxVolume = 1.5
 
 var pauseButtons = false
+var difficulty = 0
+
+var inGame = false
