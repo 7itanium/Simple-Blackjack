@@ -38,6 +38,7 @@ func _ready() -> void:
 	bridge_sound.play()
 	standButton.connect("clicked", stand)
 	hitButton.connect("clicked", hit)
+	global.money = 100 - (global.difficulty * 99)
 	getBet()
 	
 

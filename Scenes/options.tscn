@@ -52,7 +52,6 @@ texture = ExtResource("1_5a0sy")
 metadata/_edit_lock_ = true
 
 [node name="Deck" type="AnimatedSprite2D" parent="Back Ground"]
-visible = false
 z_index = 102
 position = Vector2(775, 0)
 scale = Vector2(3, 3)
@@ -60,7 +59,6 @@ sprite_frames = SubResource("SpriteFrames_o88n5")
 metadata/_edit_lock_ = true
 
 [node name="DealerChips" type="Sprite2D" parent="Back Ground"]
-visible = false
 z_index = 102
 position = Vector2(-679, -334)
 scale = Vector2(3, 3)

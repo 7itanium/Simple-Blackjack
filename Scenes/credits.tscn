@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhd2votc5oejt"]
+
+[ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_xelri"]
+[ext_resource type="AudioStream" uid="uid://d3o5077usji22" path="res://Sounds/SFX/card.mp3" id="2_uah1q"]
+[ext_resource type="AudioStream" uid="uid://b6cjku77mqcqs" path="res://Sounds/SFX/chip_pile.mp3" id="3_7emq5"]
+[ext_resource type="AudioStream" uid="uid://7pdahvvw1j1j" path="res://Sounds/SFX/chip_add.mp3" id="4_803yc"]
+[ext_resource type="FontFile" uid="uid://c07ulqlky4b6c" path="res://Fonts/VCR.ttf" id="5_1wbrc"]
+
+[node name="Credits" type="Node2D"]
+z_index = 4096
+z_as_relative = false
+
+[node name="Back Ground" type="Node" parent="."]
+
+[node name="Felt" type="Sprite2D" parent="Back Ground"]
+z_index = 202
+z_as_relative = false
+texture = ExtResource("1_xelri")
+
+[node name="FlipSound" type="AudioStreamPlayer2D" parent="Back Ground"]
+stream = ExtResource("2_uah1q")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="ChipPileSound" type="AudioStreamPlayer2D" parent="Back Ground"]
+stream = ExtResource("3_7emq5")
+bus = &"SFX"
+
+[node name="ChipSound" type="AudioStreamPlayer2D" parent="Back Ground"]
+stream = ExtResource("4_803yc")
+bus = &"SFX"
+
+[node name="Art" type="Label" parent="."]
+z_index = 110
+anchors_preset = -1
+anchor_left = -0.0575625
+anchor_top = 0.153
+anchor_right = 0.0606042
+anchor_bottom = 0.181
+offset_left = -603.0
+offset_right = 603.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("5_1wbrc")
+theme_override_font_sizes/font_size = 32
+text = "Face Cards - Mylzra
+Chips, Number Cards, & Other - 7itanium"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Art Label" type="Label" parent="Art"]
+z_index = 110
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.421227
+anchor_top = -1.03125
+anchor_right = 0.54063
+anchor_bottom = -1.0
+offset_left = -580.0
+offset_right = 626.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("5_1wbrc")
+theme_override_font_sizes/font_size = 64
+text = "Art"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sound" type="Label" parent="."]
+z_index = 110
+anchors_preset = -1
+anchor_left = -0.0575625
+anchor_top = 0.153
+anchor_right = 0.0606042
+anchor_bottom = 0.181
+offset_left = -603.0
+offset_top = 200.0
+offset_right = 603.0
+offset_bottom = 264.0
+pivot_offset = Vector2(0, 32)
+theme_override_fonts/font = ExtResource("5_1wbrc")
+theme_override_font_sizes/font_size = 32
+text = "Music - Austin Hardaway
+SFX - 7itanium"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sound Label" type="Label" parent="Sound"]
+z_index = 110
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440299
+anchor_top = 2.03125
+anchor_right = 0.559702
+anchor_bottom = 2.0625
+offset_left = -603.0
+offset_top = -196.0
+offset_right = 603.0
+offset_bottom = -132.0
+theme_override_fonts/font = ExtResource("5_1wbrc")
+theme_override_font_sizes/font_size = 64
+text = "Sound"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Main" type="Label" parent="."]
+z_index = 110
+anchors_preset = -1
+anchor_left = -0.0575625
+anchor_top = 0.153
+anchor_right = 0.0606042
+anchor_bottom = 0.181
+offset_left = -603.0
+offset_top = -200.0
+offset_right = 603.0
+offset_bottom = -136.0
+pivot_offset = Vector2(0, 32)
+theme_override_fonts/font = ExtResource("5_1wbrc")
+theme_override_font_sizes/font_size = 32
+text = "7itanium"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Main Label" type="Label" parent="Main"]
+z_index = 110
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440299
+anchor_top = 2.03125
+anchor_right = 0.559702
+anchor_bottom = 2.0625
+offset_left = -603.0
+offset_top = -196.0
+offset_right = 603.0
+offset_bottom = -132.0
+theme_override_fonts/font = ExtResource("5_1wbrc")
+theme_override_font_sizes/font_size = 64
+text = "Game Design"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
