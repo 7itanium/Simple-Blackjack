@@ -99,3 +99,7 @@ func fullscreen_toggle():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("F11"):
+		fullscreen_toggle()

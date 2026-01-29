@@ -41,9 +41,6 @@ func _ready() -> void:
 		stat_labels[0+i].text = "$" + str(global.most_money[i])
 		stat_labels[2+i].text = "$" + str(global.most_earnings[i])
 		stat_labels[4+i].text = "$" + str(global.all_money[i])
-		
-	if global.fullscreen:
-		fullscreen_label.text = "Fullscreen"
 	#difficulty_button.disabled = global.inGame
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -136,10 +133,6 @@ func _on_stats_button_mouse_exited() -> void:
 func _on_fullscreen_button_pressed() -> void:
 	chip.play()
 	global.fullscreen_toggle()
-	if global.fullscreen:
-		fullscreen_label.text = "Fullscreen"
-	else:
-		fullscreen_label.text = "Windowed"
 	fullscreen_button.position.y += 3
 	await get_tree().create_timer(.1).timeout
 	fullscreen_button.position.y -= 3
