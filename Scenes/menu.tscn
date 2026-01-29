@@ -53,7 +53,8 @@ position = Vector2(-679, -334)
 scale = Vector2(3, 3)
 texture = ExtResource("3_cayip")
 
-[node name="Player1 Camera" type="Camera2D" parent="Back Ground"]
+[node name="Camera" type="Camera2D" parent="Back Ground"]
+zoom = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
 
 [node name="Button Manager" type="Control" parent="."]

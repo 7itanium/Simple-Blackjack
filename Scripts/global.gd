@@ -83,3 +83,19 @@ var sfxVolume = 1.5
 
 var pauseButtons = false
 var difficulty = 0
+
+var fullscreen = true
+
+#all time stats
+var most_money = [100,1]
+var all_money = [0,0]
+var most_earnings = [0,0]
+
+func fullscreen_toggle():
+	global.fullscreen = !global.fullscreen
+	save.contents_to_save.fullscreen = global.fullscreen
+	save._save()
+	if fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

@@ -9,6 +9,14 @@ extends Node2D
 @onready var difficulty_label: Label = $"Buttons/Difficulty Button/Difficulty Label"
 @onready var credits_button: TextureButton = $"Buttons/Credits Button"
 @onready var credits_label: Label = $"Buttons/Credits Button/Credits Label"
+@onready var stats_button: TextureButton = $"Buttons/Stats Button"
+@onready var stats_label: Label = $"Buttons/Stats Button/Stats Label"
+@onready var fullscreen_button: TextureButton = $"Buttons/Fullscreen Button"
+@onready var fullscreen_label: Label = $"Buttons/Fullscreen Button/Fullscreen Label"
+@onready var camera: Camera2D = $"Back Ground/Camera"
+
+@onready var stat_labels = [$"Stats/Most Money/Normal", $"Stats/Most Money/Hard", $"Stats/Most Earn/Normal", $"Stats/Most Earn/Hard", $"Stats/All Earn/Normal", $"Stats/All Earn/Hard"]
+
 const GREEN = preload("res://Sprites/Buttons/Green.png")
 const GREEN_HOVER = preload("res://Sprites/Buttons/GreenHover.png")
 const GREEN_DISABLED = preload("res://Sprites/Buttons/GreenDisabled.png")
@@ -29,6 +37,13 @@ func _ready() -> void:
 	difficulty_button.texture_normal = difficulty[global.difficulty][3]
 	difficulty_button.texture_hover = difficulty[global.difficulty][4]
 	difficulty_button.texture_disabled = difficulty[global.difficulty][5]
+	for i in range(0,2):
+		stat_labels[0+i].text = "$" + str(global.most_money[i])
+		stat_labels[2+i].text = "$" + str(global.most_earnings[i])
+		stat_labels[4+i].text = "$" + str(global.all_money[i])
+		
+	if global.fullscreen:
+		fullscreen_label.text = "Fullscreen"
 	#difficulty_button.disabled = global.inGame
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -81,11 +96,18 @@ func _on_difficulty_button_pressed() -> void:
 
 
 func _on_credits_button_pressed() -> void:
+	chip.position.x = 2000
 	chip.play()
-	credits_button.position.y += 3
-	await get_tree().create_timer(.1).timeout
-	credits_button.position.y -= 3
-
+	chip.position.x = 0
+	position.x = -2000
+	camera.offset.x = 2000
+	
+	
+func _on_credits_back_pressed() -> void:
+	chip.play()
+	position.x = 0
+	camera.offset.x = 0
+	
 
 func _on_credits_button_mouse_entered() -> void:
 	credits_label.modulate.a = .67
@@ -93,3 +115,39 @@ func _on_credits_button_mouse_entered() -> void:
 
 func _on_credits_button_mouse_exited() -> void:
 	credits_label.modulate.a = 1
+
+
+func _on_stats_button_pressed() -> void:
+	chip.position.x = -2000
+	chip.play()
+	chip.position.x = 0
+	position.x = 2000
+	camera.offset.x = -2000
+
+
+func _on_stats_button_mouse_entered() -> void:
+	stats_label.modulate.a = .67
+
+func _on_stats_button_mouse_exited() -> void:
+	stats_label.modulate.a = 1
+
+
+
+func _on_fullscreen_button_pressed() -> void:
+	chip.play()
+	global.fullscreen_toggle()
+	if global.fullscreen:
+		fullscreen_label.text = "Fullscreen"
+	else:
+		fullscreen_label.text = "Windowed"
+	fullscreen_button.position.y += 3
+	await get_tree().create_timer(.1).timeout
+	fullscreen_button.position.y -= 3
+
+
+func _on_fullscreen_button_mouse_entered() -> void:
+	fullscreen_label.modulate.a = .67
+
+
+func _on_fullscreen_button_mouse_exited() -> void:
+	fullscreen_label.modulate.a = 1

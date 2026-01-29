@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c446oaxmr7uo"]
+[gd_scene load_steps=24 format=3 uid="uid://c446oaxmr7uo"]
 
 [ext_resource type="Texture2D" uid="uid://cxd1l5t5ou1iq" path="res://Sprites/Table.png" id="1_2fe8g"]
 [ext_resource type="Script" uid="uid://je1qp2c0d0cf" path="res://Scripts/game_manager.gd" id="1_dgbpv"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://depyae253tqko" path="res://Sprites/Buttons/PauseHover.png" id="14_bxtnr"]
 [ext_resource type="PackedScene" uid="uid://dv5u45javgpsd" path="res://Scenes/betting.tscn" id="17_k47uh"]
 [ext_resource type="FontFile" uid="uid://c07ulqlky4b6c" path="res://Fonts/VCR.ttf" id="17_xhfwg"]
+[ext_resource type="Texture2D" uid="uid://bokhi03q2rjml" path="res://Sprites/Buttons/White.png" id="18_3leha"]
+[ext_resource type="Texture2D" uid="uid://byfvrqhpl2be" path="res://Sprites/Buttons/WhiteHover.png" id="19_bfjrb"]
+[ext_resource type="Texture2D" uid="uid://cjno6o23tgfek" path="res://Sprites/Buttons/WhiteDisabled.png" id="20_pxje1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_somge"]
 radius = 15.0
@@ -96,6 +99,32 @@ script = ExtResource("8_oi710")
 position = Vector2(25, -20)
 shape = SubResource("CircleShape2D_somge")
 
+[node name="Menu Button" type="TextureButton" parent="Game Manager"]
+visible = false
+offset_left = -220.5
+offset_top = 203.0
+offset_right = -73.5
+offset_bottom = 233.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("18_3leha")
+texture_hover = ExtResource("19_bfjrb")
+texture_disabled = ExtResource("20_pxje1")
+
+[node name="Menu Label" type="Label" parent="Game Manager/Menu Button"]
+modulate = Color(0.79, 0.79, 0.79, 1)
+layout_mode = 0
+offset_left = 27.6667
+offset_top = 6.0
+offset_right = 333.667
+offset_bottom = 64.0
+scale = Vector2(0.3, 0.3)
+theme_override_colors/font_color = Color(0.12, 0.151667, 0.5, 1)
+theme_override_fonts/font = ExtResource("17_xhfwg")
+theme_override_font_sizes/font_size = 64
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Table" type="Node" parent="."]
 
 [node name="Felt" type="Sprite2D" parent="Table"]
@@ -118,6 +147,7 @@ texture = ExtResource("6_o4lkm")
 metadata/_edit_lock_ = true
 
 [node name="Player1 Camera" type="Camera2D" parent="Table"]
+zoom = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
 
 [node name="Pause" type="TextureButton" parent="Table"]
@@ -136,9 +166,9 @@ anchor_top = 0.153
 anchor_right = 0.033
 anchor_bottom = 0.181
 offset_left = -811.48
-offset_top = 232.76
-offset_right = -899.36
-offset_bottom = 266.52
+offset_top = 327.76
+offset_right = -834.92
+offset_bottom = 369.64
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("17_xhfwg")
 theme_override_font_sizes/font_size = 64
@@ -150,16 +180,15 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = -1
 anchor_left = -0.0705833
 anchor_top = 0.153
-anchor_right = 0.073625
+anchor_right = 0.0746667
 anchor_bottom = 0.230074
-offset_left = -309.48
-offset_top = -637.24
-offset_right = 303.64
-offset_bottom = -603.48
+offset_left = -346.24
+offset_top = -557.62
+offset_right = 342.32
+offset_bottom = -482.24
 theme_override_fonts/font = ExtResource("17_xhfwg")
 theme_override_font_sizes/font_size = 64
-text = "Dealer must draw to 16 
-and stand on 17"
+text = "21"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -170,9 +199,9 @@ anchor_top = 0.153
 anchor_right = 0.033
 anchor_bottom = 0.181
 offset_left = -104.48
-offset_top = 247.76
+offset_top = 327.76
 offset_right = 100.64
-offset_bottom = 281.52
+offset_bottom = 369.64
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("17_xhfwg")
 theme_override_font_sizes/font_size = 64
@@ -184,4 +213,31 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, 250)
 scale = Vector2(3, 3)
 
+[node name="End Screen" type="Label" parent="Table"]
+visible = false
+anchors_preset = -1
+anchor_left = -0.0705833
+anchor_top = 0.153
+anchor_right = 0.0746667
+anchor_bottom = 0.230074
+offset_left = -346.24
+offset_top = -439.62
+offset_right = 342.32
+offset_bottom = -364.24
+theme_override_fonts/font = ExtResource("17_xhfwg")
+theme_override_font_sizes/font_size = 64
+text = "Game Over!
+
+
+
+Money Earned: $
+
+
+Highest Balance: $"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="Game Manager/Menu Button" to="Game Manager" method="_on_menu_button_mouse_entered"]
+[connection signal="mouse_exited" from="Game Manager/Menu Button" to="Game Manager" method="_on_menu_button_mouse_exited"]
+[connection signal="pressed" from="Game Manager/Menu Button" to="Game Manager" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Table/Pause" to="Game Manager" method="_on_pause_pressed"]

@@ -10,9 +10,16 @@ extends Node
 @onready var player_hand_val: Label = $"../Table/playerHandVal"
 @onready var dealer_hand_val: Label = $"../Table/dealerHandVal"
 @onready var money: Label = $"../Table/Money"
+@onready var end_screen: Label = $"../Table/End Screen"
 
 @onready var pause: Node2D = $"../Pause"
 @onready var bettingUI: Node2D = $"../Table/Betting UI"
+
+@onready var menu_button: TextureButton = $"Menu Button"
+@onready var menu_label: Label = $"Menu Button/Menu Label"
+@onready var pause_button: TextureButton = $"../Table/Pause"
+
+
 
 
 var new_card = preload("res://Scenes/card.tscn")
@@ -29,6 +36,8 @@ var cards = []
 var chips = []
 var chipsWon = []
 var blackjackPay = 0
+var most_money = 0
+var all_money = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,8 +48,8 @@ func _ready() -> void:
 	standButton.connect("clicked", stand)
 	hitButton.connect("clicked", hit)
 	global.money = 100 - (global.difficulty * 99)
+	most_money = global.money
 	getBet()
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -93,8 +102,6 @@ func _process(delta: float) -> void:
 		if isDealerTurn == true and dealerDown.scale.x > 0 and dealerDown.value == 0:
 			choose_card(dealerDown, dealerHand)
 
-
-
 func getBet():
 	await get_tree().create_timer(.01, false).timeout
 	global.bet = [0, 0, 0, 0, 0, 0, 0]
@@ -121,15 +128,14 @@ func dealCards():
 	
 	deal_card(dealerHand, false)
 	await get_tree().create_timer(.2, false).timeout
-	deal_card(playerHand, false)
+	hit()
 	await get_tree().create_timer(.2, false).timeout
 	deal_card(dealerHand, true)
 	await get_tree().create_timer(.2, false).timeout
-	deal_card(playerHand, false)
+	hit()
 	
 	await get_tree().create_timer(.5, false).timeout
 	isPlayerTurn = true
-	
 
 func dealChips():
 	for i in range(6):
@@ -162,6 +168,7 @@ func end():
 			chip_pile_sound.play()
 			blackjackPay = int(ceil(global.bet[6] * 0.5))
 			global.money += global.bet[6] * 2 + blackjackPay
+			saveEarnings(global.bet[6] + blackjackPay)
 			for i in range(5, -1, -1):
 				while blackjackPay >= global.chipValues[i]:
 					global.chips += 1
@@ -185,6 +192,7 @@ func end():
 	elif dealerHand[0] > 21 or (playerHand[0] > dealerHand[0] and playerHand[0] < 22):
 		chip_pile_sound.play()
 		global.money += global.bet[6] * 2
+		saveEarnings(global.bet[6])
 		for chip in chipsWon:
 			chip.visible = true
 			chip.position = Vector2(-679, -300)
@@ -202,7 +210,16 @@ func end():
 			chips[i].x = -679
 			chips[i].y = -300
 			await get_tree().create_timer(.075, false).timeout
-	
+			
+	if most_money < global.money:
+		most_money = global.money
+		
+		if global.most_money[global.difficulty] < global.money:
+			global.most_money[global.difficulty] = global.money
+			save.contents_to_save.most_money = global.most_money
+			save._save()
+		
+		
 	await get_tree().create_timer(.5, false).timeout
 	bridge_sound.play()
 	for card in cards:
@@ -223,7 +240,32 @@ func end():
 	playerHand = [0, false, 0]
 	dealerHand = [0, false, 1]
 	blackjackPay = 0
-	getBet()
+	
+	if global.money > 0:
+		getBet()
+	else:
+		endGame()
+
+func saveEarnings(earnings):
+	all_money += earnings
+	global.all_money[global.difficulty] += earnings
+	save.contents_to_save.all_money = global.all_money
+	save._save()
+
+func endGame():
+	player_hand_val.visible = false
+	dealer_hand_val.visible = false
+	money.visible = false
+	pause_button.visible = false
+	menu_button.visible = true
+	
+	if global.most_earnings[global.difficulty] < all_money:
+		global.most_earnings[global.difficulty] = all_money
+		save.contents_to_save.most_earnings = global.most_earnings
+		save._save()
+	
+	end_screen.visible = true
+	end_screen.text = "Game Over!\n\n\n\nMoney Earned: $" + str(all_money) + "\n\n\nHighest Balance: $" + str(most_money)
 
 func dealerTurn():
 	isPlayerTurn = false
@@ -258,7 +300,7 @@ func choose_card(card, hand):
 	card.cardTexture = cardID[1]
 	liveDeck.erase(cardKey)
 	hand_value(hand, card.value)
-	
+
 func hand_value(hand, new):
 	hand[0] += new
 	if new == 1 and hand[0] < 12:
@@ -268,7 +310,6 @@ func hand_value(hand, new):
 		hand[0] -= 10
 		hand[1] = false
 
-
 func _on_pause_pressed() -> void:
 	get_tree().paused = true
 	pause.visible = true
@@ -276,3 +317,17 @@ func _on_pause_pressed() -> void:
 func unpause():
 	get_tree().paused = false
 	pause.visible = false
+
+
+func _on_menu_button_pressed() -> void:
+	chipSound.play()
+	unpause()
+	theme.seek(0)
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn") 
+
+func _on_menu_button_mouse_entered() -> void:
+	menu_label.modulate.a = .67
+
+
+func _on_menu_button_mouse_exited() -> void:
+	menu_label.modulate.a = 1
