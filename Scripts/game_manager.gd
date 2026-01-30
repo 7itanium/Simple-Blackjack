@@ -222,10 +222,14 @@ func end():
 	await get_tree().create_timer(.5, false).timeout
 	bridge_sound.play()
 	for card in cards:
-		card.target_position = Vector2(775, 0)
+		if is_instance_valid(card):
+			card.target_position = Vector2(775, 0)
+
 	await get_tree().create_timer(2, false).timeout
+
 	for card in cards:
-		card.queue_free()
+		if is_instance_valid(card):
+			card.queue_free()
 	for chip in chips:
 		chip.queue_free()
 	for chip in chipsWon:
