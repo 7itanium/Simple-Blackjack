@@ -6,6 +6,8 @@ extends Node
 
 @onready var standButton: Sprite2D = $Stand
 @onready var hitButton: Sprite2D = $Hit
+@onready var hit_label: Label = $"Hit Label"
+
 
 @onready var player_hand_val: Label = $"../Table/playerHandVal"
 @onready var dealer_hand_val: Label = $"../Table/dealerHandVal"
@@ -79,9 +81,11 @@ func _process(delta: float) -> void:
 		if isPlayerTurn:
 			standButton.visible = true
 			hitButton.visible = true
+			hit_label.visible = true
 		else:
 			standButton.visible = false
 			hitButton.visible = false
+			hit_label.visible = false
 		
 		if Input.is_action_just_pressed("Hit") and isPlayerTurn == true:
 			hit()

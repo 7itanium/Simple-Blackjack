@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dv5u45javgpsd"]
+[gd_scene load_steps=27 format=3 uid="uid://dv5u45javgpsd"]
 
 [ext_resource type="Script" uid="uid://dwjg5dl2dr7qx" path="res://Scripts/betUI.gd" id="1_4efgp"]
 [ext_resource type="Texture2D" uid="uid://dpbsbdnhrd2jx" path="res://Sprites/Chips/White.png" id="1_jp30r"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dcnxsc51hd2ll" path="res://Sprites/Chips/BlackSide.png" id="6_7k2aw"]
 [ext_resource type="Texture2D" uid="uid://dse7qmgr2opgi" path="res://Sprites/Chips/WhiteSide.png" id="6_u73kx"]
 [ext_resource type="Texture2D" uid="uid://bao7g3hbk6v4l" path="res://Sprites/Chips/BlueSide.png" id="7_1c6xh"]
+[ext_resource type="FontFile" uid="uid://c07ulqlky4b6c" path="res://Fonts/VCR.ttf" id="7_q4nis"]
 [ext_resource type="Script" uid="uid://uy00y7y2rmui" path="res://Scripts/chip.gd" id="8_0ptfu"]
 [ext_resource type="Texture2D" uid="uid://ixvk26eu45oc" path="res://Sprites/Chips/GreenSide.png" id="8_u5521"]
 [ext_resource type="Texture2D" uid="uid://dbhs2asor1e2x" path="res://Sprites/Chips/RedSide.png" id="9_0ptfu"]
@@ -170,6 +171,114 @@ script = ExtResource("11_5kdl1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Down/Purple/WhiteArrow/Highlight/Area2D"]
 position = Vector2(25, -20)
 shape = SubResource("CircleShape2D_olame")
+
+[node name="1" type="Label" parent="Down"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = -9.3333
+offset_top = 35.6667
+offset_right = 195.787
+offset_bottom = 91.8267
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_q4nis")
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="5" type="Label" parent="Down"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = 25.6667
+offset_top = 35.6667
+offset_right = 230.787
+offset_bottom = 91.8267
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_q4nis")
+theme_override_font_sizes/font_size = 32
+text = "5"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="10" type="Label" parent="Down"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = 60.6667
+offset_top = 35.6667
+offset_right = 265.787
+offset_bottom = 91.8267
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_q4nis")
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="25" type="Label" parent="Down"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = 95.6667
+offset_top = 35.6667
+offset_right = 300.787
+offset_bottom = 91.8267
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_q4nis")
+theme_override_font_sizes/font_size = 32
+text = "25"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="100" type="Label" parent="Down"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = 130.667
+offset_top = 35.6667
+offset_right = 335.787
+offset_bottom = 91.8267
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_q4nis")
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="1000" type="Label" parent="Down"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = 165.667
+offset_top = 35.6667
+offset_right = 370.787
+offset_bottom = 91.8267
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_q4nis")
+theme_override_font_sizes/font_size = 32
+text = "1000"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Up" type="Node2D" parent="."]
 

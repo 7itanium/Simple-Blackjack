@@ -10,6 +10,8 @@ extends Node2D
 @onready var purpleChips = [$"Purple Stack/Purple", $"Purple Stack/Purple2", $"Purple Stack/Purple3", $"Purple Stack/Purple4", $"Purple Stack/Purple5", $"Purple Stack/Purple6", $"Purple Stack/Purple7", $"Purple Stack/Purple8", $"Purple Stack/Purple9", $"Purple Stack/Purple10"]
 
 @onready var highlights
+@onready var purple_label: Label = $"Down/1000"
+
 
 @onready var displayChips = [whiteChips, redChips, greenChips, blueChips, blackChips, purpleChips]
 
@@ -44,10 +46,12 @@ func checkPurple():
 		check.position.x = 235
 		chips[10].position.x = 200
 		chips[11].position.x = 200
+		purple_label.visible = true
 	else:
 		check.position.x = 200
 		chips[10].position.x = 2000
 		chips[11].position.x = 2000
+		purple_label.visible = false
 
 	
 func checkBal():
