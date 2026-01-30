@@ -80,6 +80,24 @@ script = ExtResource("8_oi710")
 position = Vector2(25, -20)
 shape = SubResource("CircleShape2D_somge")
 
+[node name="Label" type="Label" parent="Game Manager/Stand"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = -33.4033
+offset_top = 11.0767
+offset_right = 171.717
+offset_bottom = 67.2367
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("17_xhfwg")
+theme_override_font_sizes/font_size = 32
+text = "Stand"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="Hit" type="Sprite2D" parent="Game Manager"]
 visible = false
 position = Vector2(575, 300)
@@ -98,6 +116,24 @@ script = ExtResource("8_oi710")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game Manager/Hit/Highlight/Area2D"]
 position = Vector2(25, -20)
 shape = SubResource("CircleShape2D_somge")
+
+[node name="Label" type="Label" parent="Game Manager/Hit"]
+anchors_preset = -1
+anchor_left = -0.031
+anchor_top = 0.153
+anchor_right = 0.033
+anchor_bottom = 0.181
+offset_left = -33.4033
+offset_top = 11.0767
+offset_right = 171.717
+offset_bottom = 67.2367
+scale = Vector2(0.333, 0.333)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("17_xhfwg")
+theme_override_font_sizes/font_size = 32
+text = "Hit"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Menu Button" type="TextureButton" parent="Game Manager"]
 visible = false

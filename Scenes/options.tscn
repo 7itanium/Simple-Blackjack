@@ -183,6 +183,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Fullscreen Button" type="TextureButton" parent="Buttons"]
+layout_mode = 0
 offset_left = 22.0
 offset_top = 59.0
 offset_right = 169.0
