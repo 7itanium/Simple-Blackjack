@@ -33,7 +33,6 @@ func _ready() -> void:
 	music.value = save.contents_to_save.musicVolume
 	sfx.value = save.contents_to_save.sfxVolume
 	difficulty_label.text = difficulty[global.difficulty][0]
-	global.money = difficulty[global.difficulty][1]
 	difficulty_button.texture_normal = difficulty[global.difficulty][3]
 	difficulty_button.texture_hover = difficulty[global.difficulty][4]
 	difficulty_button.texture_disabled = difficulty[global.difficulty][5]
