@@ -92,8 +92,8 @@ var all_money = [0,0]
 var most_earnings = [0,0]
 
 func fullscreen_toggle():
-	global.fullscreen = !global.fullscreen
-	save.contents_to_save.fullscreen = global.fullscreen
+	fullscreen = !fullscreen
+	save.contents_to_save.fullscreen = fullscreen
 	save._save()
 	if fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
