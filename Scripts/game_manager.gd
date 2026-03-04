@@ -4,6 +4,7 @@ extends Node
 @onready var bridge_sound: AudioStreamPlayer2D = $BridgeSound
 @onready var chip_pile_sound: AudioStreamPlayer2D = $ChipPileSound
 
+@onready var doubleButton: Sprite2D = $Stand/Double
 @onready var standButton: Sprite2D = $Stand
 @onready var hitButton: Sprite2D = $Hit
 @onready var hit_label: Label = $"Hit Label"
@@ -49,6 +50,7 @@ func _ready() -> void:
 	bridge_sound.play()
 	standButton.connect("clicked", stand)
 	hitButton.connect("clicked", hit)
+	doubleButton.connect("clicked", double)
 	global.money = 100 - (global.difficulty * 99)
 	most_money = global.money
 	getBet()
@@ -86,6 +88,11 @@ func _process(delta: float) -> void:
 			standButton.visible = false
 			hitButton.visible = false
 			hit_label.visible = false
+			doubleButton.visible = true
+			
+		if global.bet[6] > global.money:
+			doubleButton.visible = false
+		
 		
 		if Input.is_action_just_pressed("Hit") and isPlayerTurn == true:
 			hit()
@@ -116,7 +123,15 @@ func stand():
 	dealerTurn()
 	
 func hit():
+	doubleButton.visible = false
 	deal_card(playerHand, false)
+
+func double():
+	global.money -= global.bet[6]
+	global.bet[6] *= 2
+	dealChips()
+	hit()
+	stand()
 
 func dealCards():
 	bettingUI.position = Vector2(0,250000)
